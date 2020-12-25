@@ -1,0 +1,30 @@
+DEBUG:root:这是一个debug级别的信息
+INFO:root:这是一个info级别的信息
+WARNING:root:这是一个warning级别的信息
+ERROR:root:这是一个error级别的信息
+CRITICAL:root:这是一个critical级别的信息
+DEBUG:root:这是一个debug级别的信息
+INFO:root:这是一个info级别的信息
+WARNING:root:这是一个warning级别的信息
+ERROR:root:这是一个error级别的信息
+CRITICAL:root:这是一个critical级别的信息
+2019-02-28 16:36:11,255-DEBUG-class_1_logger.py-root-日志信息
+2019-02-28 16:36:11,255-INFO-class_1_logger.py-root-日志信息
+2019-02-28 16:36:11,256-WARNING-class_1_logger.py-root-日志信息
+2019-02-28 16:36:11,256-ERROR-class_1_logger.py-root-日志信息
+2019-02-28 16:36:11,256-CRITICAL-class_1_logger.py-root-日志信息
+2019-02-28 16:36:43,672-DEBUG-class_1_logger.py-日志信息:这是一个debug级别的信息
+2019-02-28 16:36:43,672-INFO-class_1_logger.py-日志信息:这是一个info级别的信息
+2019-02-28 16:36:43,673-WARNING-class_1_logger.py-日志信息:这是一个warning级别的信息
+2019-02-28 16:36:43,673-ERROR-class_1_logger.py-日志信息:这是一个error级别的信息
+2019-02-28 16:36:43,673-CRITICAL-class_1_logger.py-日志信息:这是一个critical级别的信息
+2019-02-28 16:38:30,340-DEBUG-class_1_logger.py-日志信息:这是一个debug级别的信息
+2019-02-28 16:38:30,340-INFO-class_1_logger.py-日志信息:这是一个info级别的信息
+2019-02-28 16:38:30,340-WARNING-class_1_logger.py-日志信息:这是一个warning级别的信息
+2019-02-28 16:38:30,341-ERROR-class_1_logger.py-日志信息:这是一个error级别的信息
+2019-02-28 16:38:30,341-CRITICAL-class_1_logger.py-日志信息:这是一个critical级别的信息
+Thu, 28 Feb 2019 16:38:48-DEBUG-class_1_logger.py-日志信息:这是一个debug级别的信息
+Thu, 28 Feb 2019 16:38:48-INFO-class_1_logger.py-日志信息:这是一个info级别的信息
+Thu, 28 Feb 2019 16:38:48-WARNING-class_1_logger.py-日志信息:这是一个warning级别的信息
+Thu, 28 Feb 2019 16:38:48-ERROR-class_1_logger.py-日志信息:这是一个error级别的信息
+Thu, 28 Feb 2019 16:38:48-CRITICAL-class_1_logger.py-日志信息:这是一个critical级别的信息

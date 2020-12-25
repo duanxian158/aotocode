@@ -1,0 +1,120 @@
+Fri, 22 Mar 2019 15:16:04-INFO-test_http_request.py-日志信息:正在执行第1条用例：登录成功
+Fri, 22 Mar 2019 15:16:04-INFO-test_http_request.py-日志信息:发起请求的地址是：http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile
+Fri, 22 Mar 2019 15:16:04-INFO-test_http_request.py-日志信息:发起请求的参数是：{'ACB501':'${tel}','UCC003':'E10ADC3949BA59ABBE56E057F20F883E'}
+Fri, 22 Mar 2019 15:16:04-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 47.104.134.50:8554
+Fri, 22 Mar 2019 15:16:04-DEBUG-connectionpool.py-日志信息:http://47.104.134.50:8554 "POST /person/ElectronicCertificates/account/v1.0/ByMobile HTTP/1.1" 200 83
+Fri, 22 Mar 2019 15:16:04-ERROR-test_http_request.py-日志信息:出错了，错误是：'请求成功' != '账号不存在或未注册'
+- 请求成功
++ 账号不存在或未注册
+
+Fri, 22 Mar 2019 15:16:04-INFO-test_http_request.py-日志信息:正在执行第2条用例：密码错误
+Fri, 22 Mar 2019 15:16:04-INFO-test_http_request.py-日志信息:发起请求的地址是：http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile
+Fri, 22 Mar 2019 15:16:04-INFO-test_http_request.py-日志信息:发起请求的参数是：{'ACB501':'${tel}','UCC003':'E10ADC3949BA59ABBE56E057F20F883E'}
+Fri, 22 Mar 2019 15:16:04-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 47.104.134.50:8554
+Fri, 22 Mar 2019 15:16:04-DEBUG-connectionpool.py-日志信息:http://47.104.134.50:8554 "POST /person/ElectronicCertificates/account/v1.0/ByMobile HTTP/1.1" 200 83
+Fri, 22 Mar 2019 15:16:05-INFO-test_http_request.py-日志信息:正在执行第3条用例：培训机构登录成功
+Fri, 22 Mar 2019 15:16:05-INFO-test_http_request.py-日志信息:发起请求的地址是：http://101.201.144.11:10222/Login/SchoolUserLogin
+Fri, 22 Mar 2019 15:16:05-INFO-test_http_request.py-日志信息:发起请求的参数是：{'pxjgid':'0efb6b58-de90-4eab-b387-74025e35a27f','username':'admin','pwd':'21232F297A57A5A743894A0E4A801FC3'}
+Fri, 22 Mar 2019 15:16:05-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 101.201.144.11:10222
+Fri, 22 Mar 2019 15:16:05-DEBUG-connectionpool.py-日志信息:http://101.201.144.11:10222 "POST /Login/SchoolUserLogin HTTP/1.1" 200 703
+Fri, 22 Mar 2019 15:16:05-INFO-test_http_request.py-日志信息:正在执行第4条用例：保存签字信息
+Fri, 22 Mar 2019 15:16:05-INFO-test_http_request.py-日志信息:发起请求的地址是：http://101.201.144.11:10222/SignManage/Save
+Fri, 22 Mar 2019 15:16:05-INFO-test_http_request.py-日志信息:发起请求的参数是：{'QZCZXID':'66666','QZRLX':'0','QZRID':'fe2d6522-f237-4cbd-8f78-eacd3d77df9a'}
+Fri, 22 Mar 2019 15:16:05-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 101.201.144.11:10222
+Fri, 22 Mar 2019 15:16:05-DEBUG-connectionpool.py-日志信息:http://101.201.144.11:10222 "POST /SignManage/Save HTTP/1.1" 200 113
+Fri, 22 Mar 2019 16:17:20-INFO-test_http_request.py-日志信息:正在执行第1条用例：登录成功
+Fri, 22 Mar 2019 16:17:20-INFO-test_http_request.py-日志信息:发起请求的地址是：http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile
+Fri, 22 Mar 2019 16:17:20-INFO-test_http_request.py-日志信息:发起请求的参数是：{'ACB501':'${tel}','UCC003':'E10ADC3949BA59ABBE56E057F20F883E'}
+Fri, 22 Mar 2019 16:17:20-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 47.104.134.50:8554
+Fri, 22 Mar 2019 16:17:21-DEBUG-connectionpool.py-日志信息:http://47.104.134.50:8554 "POST /person/ElectronicCertificates/account/v1.0/ByMobile HTTP/1.1" 200 83
+Fri, 22 Mar 2019 16:17:21-ERROR-test_http_request.py-日志信息:出错了，错误是：'请求成功' != '账号不存在或未注册'
+- 请求成功
++ 账号不存在或未注册
+
+Fri, 22 Mar 2019 16:17:21-INFO-test_http_request.py-日志信息:正在执行第2条用例：密码错误
+Fri, 22 Mar 2019 16:17:21-INFO-test_http_request.py-日志信息:发起请求的地址是：http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile
+Fri, 22 Mar 2019 16:17:21-INFO-test_http_request.py-日志信息:发起请求的参数是：{'ACB501':'${tel}','UCC003':'E10ADC3949BA59ABBE56E057F20F883E'}
+Fri, 22 Mar 2019 16:17:21-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 47.104.134.50:8554
+Fri, 22 Mar 2019 16:17:21-DEBUG-connectionpool.py-日志信息:http://47.104.134.50:8554 "POST /person/ElectronicCertificates/account/v1.0/ByMobile HTTP/1.1" 200 83
+Fri, 22 Mar 2019 16:17:21-INFO-test_http_request.py-日志信息:正在执行第3条用例：培训机构登录成功
+Fri, 22 Mar 2019 16:17:21-INFO-test_http_request.py-日志信息:发起请求的地址是：http://101.201.144.11:10222/Login/SchoolUserLogin
+Fri, 22 Mar 2019 16:17:21-INFO-test_http_request.py-日志信息:发起请求的参数是：{'pxjgid':'0efb6b58-de90-4eab-b387-74025e35a27f','username':'admin','pwd':'21232F297A57A5A743894A0E4A801FC3'}
+Fri, 22 Mar 2019 16:17:21-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 101.201.144.11:10222
+Fri, 22 Mar 2019 16:17:21-DEBUG-connectionpool.py-日志信息:http://101.201.144.11:10222 "POST /Login/SchoolUserLogin HTTP/1.1" 200 703
+Fri, 22 Mar 2019 16:17:21-INFO-test_http_request.py-日志信息:正在执行第4条用例：保存签字信息
+Fri, 22 Mar 2019 16:17:21-INFO-test_http_request.py-日志信息:发起请求的地址是：http://101.201.144.11:10222/SignManage/Save
+Fri, 22 Mar 2019 16:17:21-INFO-test_http_request.py-日志信息:发起请求的参数是：{'QZCZXID':'66666','QZRLX':'0','QZRID':'fe2d6522-f237-4cbd-8f78-eacd3d77df9a'}
+Fri, 22 Mar 2019 16:17:21-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 101.201.144.11:10222
+Fri, 22 Mar 2019 16:17:22-DEBUG-connectionpool.py-日志信息:http://101.201.144.11:10222 "POST /SignManage/Save HTTP/1.1" 200 113
+Wed, 03 Apr 2019 17:22:23-INFO-test_http_request.py-日志信息:正在执行第1条用例：登录成功
+Wed, 03 Apr 2019 17:22:23-INFO-test_http_request.py-日志信息:发起请求的地址是：http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile
+Wed, 03 Apr 2019 17:22:23-INFO-test_http_request.py-日志信息:发起请求的参数是：{'ACB501':'${tel}','UCC003':'E10ADC3949BA59ABBE56E057F20F883E'}
+Wed, 03 Apr 2019 17:22:23-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 127.0.0.1:8888
+Wed, 03 Apr 2019 17:22:24-DEBUG-connectionpool.py-日志信息:http://127.0.0.1:8888 "POST http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile HTTP/1.1" 200 83
+Wed, 03 Apr 2019 17:22:24-ERROR-test_http_request.py-日志信息:出错了，错误是：'请求成功' != '账号不存在或未注册'
+- 请求成功
++ 账号不存在或未注册
+
+Wed, 03 Apr 2019 17:22:24-INFO-test_http_request.py-日志信息:正在执行第2条用例：密码错误
+Wed, 03 Apr 2019 17:22:24-INFO-test_http_request.py-日志信息:发起请求的地址是：http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile
+Wed, 03 Apr 2019 17:22:24-INFO-test_http_request.py-日志信息:发起请求的参数是：{'ACB501':'${tel}','UCC003':'E10ADC3949BA59ABBE56E057F20F883E'}
+Wed, 03 Apr 2019 17:22:24-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 127.0.0.1:8888
+Wed, 03 Apr 2019 17:22:24-DEBUG-connectionpool.py-日志信息:http://127.0.0.1:8888 "POST http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile HTTP/1.1" 200 83
+Wed, 03 Apr 2019 17:22:24-INFO-test_http_request.py-日志信息:正在执行第3条用例：培训机构登录成功
+Wed, 03 Apr 2019 17:22:24-INFO-test_http_request.py-日志信息:发起请求的地址是：http://101.201.144.11:10222/Login/SchoolUserLogin
+Wed, 03 Apr 2019 17:22:24-INFO-test_http_request.py-日志信息:发起请求的参数是：{'pxjgid':'0efb6b58-de90-4eab-b387-74025e35a27f','username':'admin','pwd':'21232F297A57A5A743894A0E4A801FC3'}
+Wed, 03 Apr 2019 17:22:24-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 127.0.0.1:8888
+Wed, 03 Apr 2019 17:22:35-DEBUG-connectionpool.py-日志信息:http://127.0.0.1:8888 "POST http://101.201.144.11:10222/Login/SchoolUserLogin HTTP/1.1" 200 703
+Wed, 03 Apr 2019 17:22:35-INFO-test_http_request.py-日志信息:正在执行第4条用例：保存签字信息
+Wed, 03 Apr 2019 17:22:35-INFO-test_http_request.py-日志信息:发起请求的地址是：http://101.201.144.11:10222/SignManage/Save
+Wed, 03 Apr 2019 17:22:35-INFO-test_http_request.py-日志信息:发起请求的参数是：{'QZCZXID':'66666','QZRLX':'0','QZRID':'fe2d6522-f237-4cbd-8f78-eacd3d77df9a'}
+Wed, 03 Apr 2019 17:22:35-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 127.0.0.1:8888
+Wed, 03 Apr 2019 17:22:35-DEBUG-connectionpool.py-日志信息:http://127.0.0.1:8888 "POST http://101.201.144.11:10222/SignManage/Save HTTP/1.1" 200 113
+Mon, 08 Apr 2019 14:09:20-INFO-test_http_request.py-日志信息:正在执行第1条用例：登录成功
+Mon, 08 Apr 2019 14:09:20-INFO-test_http_request.py-日志信息:发起请求的地址是：http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile
+Mon, 08 Apr 2019 14:09:20-INFO-test_http_request.py-日志信息:发起请求的参数是：{'ACB501':'${tel}','UCC003':'E10ADC3949BA59ABBE56E057F20F883E'}
+Mon, 08 Apr 2019 14:09:20-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 47.104.134.50:8554
+Mon, 08 Apr 2019 14:09:22-DEBUG-connectionpool.py-日志信息:http://47.104.134.50:8554 "POST /person/ElectronicCertificates/account/v1.0/ByMobile HTTP/1.1" 200 83
+Mon, 08 Apr 2019 14:09:22-ERROR-test_http_request.py-日志信息:出错了，错误是：'请求成功' != '账号不存在或未注册'
+- 请求成功
++ 账号不存在或未注册
+
+Mon, 08 Apr 2019 14:09:22-INFO-test_http_request.py-日志信息:正在执行第2条用例：密码错误
+Mon, 08 Apr 2019 14:09:22-INFO-test_http_request.py-日志信息:发起请求的地址是：http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile
+Mon, 08 Apr 2019 14:09:22-INFO-test_http_request.py-日志信息:发起请求的参数是：{'ACB501':'${tel}','UCC003':'E10ADC3949BA59ABBE56E057F20F883E'}
+Mon, 08 Apr 2019 14:09:22-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 47.104.134.50:8554
+Mon, 08 Apr 2019 14:09:23-DEBUG-connectionpool.py-日志信息:http://47.104.134.50:8554 "POST /person/ElectronicCertificates/account/v1.0/ByMobile HTTP/1.1" 200 83
+Mon, 08 Apr 2019 14:09:23-INFO-test_http_request.py-日志信息:正在执行第3条用例：培训机构登录成功
+Mon, 08 Apr 2019 14:09:23-INFO-test_http_request.py-日志信息:发起请求的地址是：http://101.201.144.11:10222/Login/SchoolUserLogin
+Mon, 08 Apr 2019 14:09:23-INFO-test_http_request.py-日志信息:发起请求的参数是：{'pxjgid':'0efb6b58-de90-4eab-b387-74025e35a27f','username':'admin','pwd':'21232F297A57A5A743894A0E4A801FC3'}
+Mon, 08 Apr 2019 14:09:23-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 101.201.144.11:10222
+Mon, 08 Apr 2019 14:09:31-DEBUG-connectionpool.py-日志信息:http://101.201.144.11:10222 "POST /Login/SchoolUserLogin HTTP/1.1" 200 703
+Mon, 08 Apr 2019 14:09:31-INFO-test_http_request.py-日志信息:正在执行第4条用例：保存签字信息
+Mon, 08 Apr 2019 14:09:31-INFO-test_http_request.py-日志信息:发起请求的地址是：http://101.201.144.11:10222/SignManage/Save
+Mon, 08 Apr 2019 14:09:31-INFO-test_http_request.py-日志信息:发起请求的参数是：{'QZCZXID':'66666','QZRLX':'0','QZRID':'fe2d6522-f237-4cbd-8f78-eacd3d77df9a'}
+Mon, 08 Apr 2019 14:09:31-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 101.201.144.11:10222
+Mon, 08 Apr 2019 14:09:31-DEBUG-connectionpool.py-日志信息:http://101.201.144.11:10222 "POST /SignManage/Save HTTP/1.1" 200 113
+Mon, 08 Apr 2019 14:09:37-INFO-test_http_request.py-日志信息:正在执行第1条用例：登录成功
+Mon, 08 Apr 2019 14:09:37-INFO-test_http_request.py-日志信息:发起请求的地址是：http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile
+Mon, 08 Apr 2019 14:09:37-INFO-test_http_request.py-日志信息:发起请求的参数是：{'ACB501':'${tel}','UCC003':'E10ADC3949BA59ABBE56E057F20F883E'}
+Mon, 08 Apr 2019 14:09:37-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 47.104.134.50:8554
+Mon, 08 Apr 2019 14:09:38-DEBUG-connectionpool.py-日志信息:http://47.104.134.50:8554 "POST /person/ElectronicCertificates/account/v1.0/ByMobile HTTP/1.1" 200 83
+Mon, 08 Apr 2019 14:09:38-ERROR-test_http_request.py-日志信息:出错了，错误是：'请求成功' != '账号不存在或未注册'
+- 请求成功
++ 账号不存在或未注册
+
+Mon, 08 Apr 2019 14:09:38-INFO-test_http_request.py-日志信息:正在执行第2条用例：密码错误
+Mon, 08 Apr 2019 14:09:38-INFO-test_http_request.py-日志信息:发起请求的地址是：http://47.104.134.50:8554/person/ElectronicCertificates/account/v1.0/ByMobile
+Mon, 08 Apr 2019 14:09:38-INFO-test_http_request.py-日志信息:发起请求的参数是：{'ACB501':'${tel}','UCC003':'E10ADC3949BA59ABBE56E057F20F883E'}
+Mon, 08 Apr 2019 14:09:38-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 47.104.134.50:8554
+Mon, 08 Apr 2019 14:09:38-DEBUG-connectionpool.py-日志信息:http://47.104.134.50:8554 "POST /person/ElectronicCertificates/account/v1.0/ByMobile HTTP/1.1" 200 83
+Mon, 08 Apr 2019 14:09:38-INFO-test_http_request.py-日志信息:正在执行第3条用例：培训机构登录成功
+Mon, 08 Apr 2019 14:09:38-INFO-test_http_request.py-日志信息:发起请求的地址是：http://101.201.144.11:10222/Login/SchoolUserLogin
+Mon, 08 Apr 2019 14:09:38-INFO-test_http_request.py-日志信息:发起请求的参数是：{'pxjgid':'0efb6b58-de90-4eab-b387-74025e35a27f','username':'admin','pwd':'21232F297A57A5A743894A0E4A801FC3'}
+Mon, 08 Apr 2019 14:09:38-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 101.201.144.11:10222
+Mon, 08 Apr 2019 14:09:39-DEBUG-connectionpool.py-日志信息:http://101.201.144.11:10222 "POST /Login/SchoolUserLogin HTTP/1.1" 200 703
+Mon, 08 Apr 2019 14:09:39-INFO-test_http_request.py-日志信息:正在执行第4条用例：保存签字信息
+Mon, 08 Apr 2019 14:09:39-INFO-test_http_request.py-日志信息:发起请求的地址是：http://101.201.144.11:10222/SignManage/Save
+Mon, 08 Apr 2019 14:09:39-INFO-test_http_request.py-日志信息:发起请求的参数是：{'QZCZXID':'66666','QZRLX':'0','QZRID':'fe2d6522-f237-4cbd-8f78-eacd3d77df9a'}
+Mon, 08 Apr 2019 14:09:39-DEBUG-connectionpool.py-日志信息:Starting new HTTP connection (1): 101.201.144.11:10222
+Mon, 08 Apr 2019 14:09:39-DEBUG-connectionpool.py-日志信息:http://101.201.144.11:10222 "POST /SignManage/Save HTTP/1.1" 200 113

@@ -1,0 +1,840 @@
+Fri, 11 Dec 2020 14:13:56-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:14:11-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:14:12-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:14:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:14:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:14:14-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:15:22-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:15:32-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:15:32-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:15:32-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:15:33-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:15:34-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:15:35-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 14:15:36-ERROR-base_page.py click_element [line:79] root-日志信息：点击操作失败：('xpath', '//a[text()="简历管理"]')个人中心页面-点击简历管理
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 75, in click_element
+    ele.click()
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <a class="resManger" href="/Person/PersonResume">...</a> is not clickable at point (546, 131). Other element would receive the click: <div class="modal fade bs-example-modal-lg" id="centerLoading" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" data-backdrop="static" style="display: block; padding-right: 17px;">...</div>
+  (Session info: chrome=87.0.4280.88)
+
+Fri, 11 Dec 2020 14:15:36-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/个人中心页面-点击简历管理_20201211_141536.png
+Fri, 11 Dec 2020 14:20:07-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:20:17-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:20:17-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:20:17-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:20:17-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:20:19-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:20:19-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 14:20:20-INFO-base_page.py click_element [line:76] root-日志信息：个人中心页面-点击简历管理点击成功
+Fri, 11 Dec 2020 14:20:50-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,添加求职志愿,('id', 'ed-function')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 14:20:51-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_142050.png
+Fri, 11 Dec 2020 14:24:52-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:25:01-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:25:02-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:25:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:25:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:25:03-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:25:04-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 14:25:05-INFO-base_page.py click_element [line:76] root-日志信息：个人中心页面-点击简历管理点击成功
+Fri, 11 Dec 2020 14:25:05-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 14:25:05-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:25:06-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', 'ed-function')
+Fri, 11 Dec 2020 14:25:06-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:25:06-ERROR-base_page.py get_element [line:50] root-日志信息：未找到元素:,,('id', '010110')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 47, in get_element
+    return self.driver.find_element(locator[0],locator[1])
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="010110"]"}
+  (Session info: chrome=87.0.4280.88)
+
+Fri, 11 Dec 2020 14:25:06-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/_20201211_142506.png
+Fri, 11 Dec 2020 14:28:42-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:28:51-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:28:52-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:28:52-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:28:52-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:28:53-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:28:54-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 14:28:54-INFO-base_page.py click_element [line:76] root-日志信息：个人中心页面-点击简历管理点击成功
+Fri, 11 Dec 2020 14:28:54-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 14:28:54-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:28:55-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', 'ed-function')
+Fri, 11 Dec 2020 14:28:55-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:29:25-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,添加求职志愿,('id', '010110')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 14:29:26-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_142925.png
+Fri, 11 Dec 2020 14:34:21-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:34:31-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:34:31-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:34:32-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:34:32-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:34:33-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:34:34-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 14:34:36-INFO-base_page.py click_element [line:76] root-日志信息：个人中心页面-点击简历管理点击成功
+Fri, 11 Dec 2020 14:34:36-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 14:34:36-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:00-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', 'ed-function')
+Fri, 11 Dec 2020 14:35:12-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:26-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 14:35:28-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:29-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:31-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:31-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 14:35:32-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:33-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:34-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:34-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:35-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:36-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:36-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:37-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:35:40-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 14:36:36-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:36:45-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:36:46-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:36:46-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:36:46-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:36:47-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:36:50-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 14:36:52-INFO-base_page.py click_element [line:76] root-日志信息：个人中心页面-点击简历管理点击成功
+Fri, 11 Dec 2020 14:36:52-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 14:36:52-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:36:52-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', 'ed-function')
+Fri, 11 Dec 2020 14:36:54-ERROR-base_page.py click_element [line:79] root-日志信息：点击操作失败：('id', 'ed-function')添加求职志愿
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 75, in click_element
+    ele.click()
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <input type="button" id="ed-function" class="form-control" value="" pid=""> is not clickable at point (656, 332). Other element would receive the click: <select class="form-control" name="" id="ed-workNat" value="">...</select>
+  (Session info: chrome=87.0.4280.88)
+
+Fri, 11 Dec 2020 14:36:54-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_143654.png
+Fri, 11 Dec 2020 14:42:59-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:43:11-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:43:12-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:43:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:43:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:43:13-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:43:14-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 14:43:15-INFO-base_page.py click_element [line:76] root-日志信息：个人中心页面-点击简历管理点击成功
+Fri, 11 Dec 2020 14:43:15-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 14:43:15-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:16-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//*[@id="ed-function"]')
+Fri, 11 Dec 2020 14:43:16-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:16-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 14:43:16-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:16-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:17-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 14:43:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:43:18-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 14:45:45-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:45:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:45:59-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:45:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:46:00-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:46:01-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:46:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 14:46:03-INFO-base_page.py click_element [line:76] root-日志信息：个人中心页面-点击简历管理点击成功
+Fri, 11 Dec 2020 14:46:03-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 14:46:03-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:46:33-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,添加求职志愿,('xpath', '//*[@id="ed-function"]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 14:47:14-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_144633.png
+Fri, 11 Dec 2020 14:49:05-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:49:41-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:49:42-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:49:42-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:49:42-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:50:28-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:50:58-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 14:51:18-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:51:27-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:51:27-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:51:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:51:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:51:29-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:51:29-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 14:51:30-INFO-base_page.py click_element [line:76] root-日志信息：个人中心页面-点击简历管理点击成功
+Fri, 11 Dec 2020 14:51:30-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 14:51:31-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:31-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//*[@id="ed-function"]')
+Fri, 11 Dec 2020 14:51:31-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:31-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 14:51:31-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:31-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:32-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:32-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 14:51:32-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:32-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:32-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:32-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:32-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:32-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:32-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:32-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:51:33-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 14:52:34-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:52:44-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:52:44-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:52:44-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:52:44-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:52:46-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:53:03-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 14:53:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 14:53:13-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:53:13-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 14:53:13-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 14:53:14-INFO-base_page.py click_element [line:76] root-日志信息：个人登录点击成功
+Fri, 11 Dec 2020 14:53:15-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 14:53:16-INFO-base_page.py click_element [line:76] root-日志信息：个人中心页面-点击简历管理点击成功
+Fri, 11 Dec 2020 14:53:16-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 14:53:16-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:16-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//*[@id="ed-function"]')
+Fri, 11 Dec 2020 14:53:16-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:16-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 14:53:16-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:17-INFO-base_page.py click_element [line:76] root-日志信息：添加求职志愿点击成功
+Fri, 11 Dec 2020 14:53:18-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 15:32:54-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:33:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:33:12-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:33:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:33:13-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:33:23-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:33:24-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:33:25-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:33:25-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:33:25-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:33:48-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:33:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:33:59-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:33:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:33:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:34:01-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:34:01-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:34:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:34:03-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:34:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:34:03-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//*[@id="ed-function"]')
+Fri, 11 Dec 2020 15:34:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//*[@id="ed-function"]')
+Fri, 11 Dec 2020 15:34:34-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,添加求职志愿,('id', '010110')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 15:35:03-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:35:13-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:35:14-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:35:14-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:35:14-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:35:15-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:35:16-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:35:16-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:35:17-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:35:17-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:35:17-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//*[@id="ed-function"]')
+Fri, 11 Dec 2020 15:35:17-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//*[@id="ed-function"]')
+Fri, 11 Dec 2020 15:35:37-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,添加求职志愿,('id', '010110')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 15:35:37-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_153537.png
+Fri, 11 Dec 2020 15:36:57-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:37:48-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:37:58-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:38:08-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:38:08-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:38:08-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:38:08-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:38:10-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:38:10-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:38:10-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:38:11-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:38:11-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:38:12-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:38:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:38:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:38:12-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:38:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//*[@id="ed-function"]')
+Fri, 11 Dec 2020 15:38:13-ERROR-base_page.py click_element [line:79] root-日志信息：点击操作失败：('xpath', '//*[@id="ed-function"]')添加求职志愿
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 75, in click_element
+    ele.click()
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <input type="button" id="ed-function" class="form-control" value="" pid=""> is not clickable at point (656, 481). Other element would receive the click: <div class="col-wb-6 wb_col" style="text-align:left">...</div>
+  (Session info: chrome=87.0.4280.88)
+
+Fri, 11 Dec 2020 15:38:14-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_153813.png
+Fri, 11 Dec 2020 15:39:12-ERROR-imge_code.py get_pictures [line:39] root-日志信息：图形验证码获取失败
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\imge_code.py", line 22, in get_pictures
+    self.driver.save_screenshot("pictures.png")
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1055, in save_screenshot
+    return self.get_screenshot_as_file(filename)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1032, in get_screenshot_as_file
+    png = self.get_screenshot_as_png()
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1064, in get_screenshot_as_png
+    return base64.b64decode(self.get_screenshot_as_base64().encode('ascii'))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 1074, in get_screenshot_as_base64
+    return self.execute(Command.SCREENSHOT)['value']
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: timeout: Timed out receiving message from renderer: 10.000
+  (Session info: chrome=87.0.4280.88)
+
+Fri, 11 Dec 2020 15:40:26-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:40:35-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:40:36-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:40:36-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:40:36-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:40:37-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:40:38-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:40:39-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:40:39-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:40:39-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:40:39-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:40:40-ERROR-base_page.py click_element [line:79] root-日志信息：点击操作失败：('xpath', '//input[@id="ed-function"]')添加求职志愿
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 75, in click_element
+    ele.click()
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <input type="button" id="ed-function" class="form-control" value="" pid=""> is not clickable at point (656, 476). Other element would receive the click: <div class="col-wb-6 wb_col" style="text-align:left">...</div>
+  (Session info: chrome=87.0.4280.88)
+
+Fri, 11 Dec 2020 15:40:41-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_154040.png
+Fri, 11 Dec 2020 15:41:16-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:41:25-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:41:26-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:41:26-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:41:26-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:41:27-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:41:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:41:28-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:41:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:41:28-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:41:29-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:41:30-ERROR-base_page.py click_element [line:79] root-日志信息：点击操作失败：('xpath', '//input[@id="ed-function"]')添加求职志愿
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 75, in click_element
+    ele.click()
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <input type="button" id="ed-function" class="form-control" value="" pid=""> is not clickable at point (656, 329). Other element would receive the click: <ul>...</ul>
+  (Session info: chrome=87.0.4280.88)
+
+Fri, 11 Dec 2020 15:41:30-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_154130.png
+Fri, 11 Dec 2020 15:43:46-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:43:56-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:43:57-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:43:57-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:43:57-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:43:58-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:43:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:44:00-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:44:00-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:44:00-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:44:00-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:44:00-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:44:21-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,添加求职志愿,('id', '010110')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 15:44:21-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_154421.png
+Fri, 11 Dec 2020 15:45:54-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:46:03-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:46:04-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:46:04-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:46:04-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:46:06-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:46:06-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:46:08-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:46:08-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:46:08-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:46:08-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:46:09-ERROR-base_page.py click_element [line:79] root-日志信息：点击操作失败：('xpath', '//input[@id="ed-function"]')添加求职志愿
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 75, in click_element
+    ele.click()
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <input type="button" id="ed-function" class="form-control" value="" pid=""> is not clickable at point (656, 491). Other element would receive the click: <div class="col-wb-6 wb_col" style="text-align:left">...</div>
+  (Session info: chrome=87.0.4280.88)
+
+Fri, 11 Dec 2020 15:46:10-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_154609.png
+Fri, 11 Dec 2020 15:47:10-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:47:21-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:47:21-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:47:21-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:47:21-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:47:23-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:47:23-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:47:24-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:47:24-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:47:24-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:47:24-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:47:32-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:47:44-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:47:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:47:46-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@class="checkIn btnOn"]')
+Fri, 11 Dec 2020 15:47:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-jobArea')
+Fri, 11 Dec 2020 15:47:48-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:47:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:47:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="QX_Selected"]/ul/li[text()="武昌区"]')
+Fri, 11 Dec 2020 15:47:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:47:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-salary')
+Fri, 11 Dec 2020 15:47:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:47:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-workNat')
+Fri, 11 Dec 2020 15:47:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-workNat"]/option[5]')
+Fri, 11 Dec 2020 15:47:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 're-voluntSave')
+Fri, 11 Dec 2020 15:47:50-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 15:48:38-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:48:48-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:48:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:48:48-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:48:49-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:48:50-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:48:51-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:48:52-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:48:52-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:48:52-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:48:52-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:48:52-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:49:23-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,添加求职志愿,('id', '010110')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 15:49:23-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_154923.png
+Fri, 11 Dec 2020 15:50:30-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:50:39-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:50:40-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:50:40-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:50:40-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:50:41-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:50:42-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:50:43-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:50:43-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:50:43-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:50:43-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:50:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:50:44-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:50:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:50:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@class="checkIn btnOn"]')
+Fri, 11 Dec 2020 15:50:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-jobArea')
+Fri, 11 Dec 2020 15:50:44-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:50:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:50:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="QX_Selected"]/ul/li[text()="武昌区"]')
+Fri, 11 Dec 2020 15:50:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:50:45-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-salary')
+Fri, 11 Dec 2020 15:50:45-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:50:45-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-workNat')
+Fri, 11 Dec 2020 15:50:45-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-workNat"]/option[5]')
+Fri, 11 Dec 2020 15:50:45-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 're-voluntSave')
+Fri, 11 Dec 2020 15:50:46-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 15:51:19-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:51:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:51:28-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:51:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:51:29-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:51:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:51:49-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:51:58-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:51:59-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:51:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:51:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:52:00-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:52:01-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:52:02-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:52:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:52:02-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:52:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:52:03-ERROR-base_page.py click_element [line:79] root-日志信息：点击操作失败：('xpath', '//input[@id="ed-function"]')添加求职志愿
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 75, in click_element
+    ele.click()
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <input type="button" id="ed-function" class="form-control" value="" pid=""> is not clickable at point (656, 495). Other element would receive the click: <div class="col-wb-6 wb_col" style="text-align:left">...</div>
+  (Session info: chrome=87.0.4280.88)
+
+Fri, 11 Dec 2020 15:52:04-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_155203.png
+Fri, 11 Dec 2020 15:53:03-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:53:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:53:13-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:53:13-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:53:13-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:53:14-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:53:15-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:53:16-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:53:16-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:53:16-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:53:16-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:53:17-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:53:17-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:53:17-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:53:17-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@class="checkIn btnOn"]')
+Fri, 11 Dec 2020 15:53:17-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-jobArea')
+Fri, 11 Dec 2020 15:53:17-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:53:17-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:53:17-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="QX_Selected"]/ul/li[text()="武昌区"]')
+Fri, 11 Dec 2020 15:53:17-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:53:18-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-salary')
+Fri, 11 Dec 2020 15:53:18-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:53:18-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-workNat')
+Fri, 11 Dec 2020 15:53:18-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-workNat"]/option[5]')
+Fri, 11 Dec 2020 15:53:18-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 're-voluntSave')
+Fri, 11 Dec 2020 15:53:18-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 15:53:49-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:53:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:53:59-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:53:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:53:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:54:00-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:54:01-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:54:02-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:54:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:54:02-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:54:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:54:02-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:54:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:54:02-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:54:02-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@class="checkIn btnOn"]')
+Fri, 11 Dec 2020 15:54:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-jobArea')
+Fri, 11 Dec 2020 15:54:03-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:54:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:54:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="QX_Selected"]/ul/li[text()="武昌区"]')
+Fri, 11 Dec 2020 15:54:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:54:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-salary')
+Fri, 11 Dec 2020 15:54:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:54:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-workNat')
+Fri, 11 Dec 2020 15:54:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-workNat"]/option[5]')
+Fri, 11 Dec 2020 15:54:03-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 're-voluntSave')
+Fri, 11 Dec 2020 15:54:04-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 15:54:14-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:54:24-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:54:25-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:54:25-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:54:25-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:54:26-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:54:27-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:54:28-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:54:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:54:28-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:54:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:54:28-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:54:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:54:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:54:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@class="checkIn btnOn"]')
+Fri, 11 Dec 2020 15:54:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-jobArea')
+Fri, 11 Dec 2020 15:54:29-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:54:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:54:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="QX_Selected"]/ul/li[text()="武昌区"]')
+Fri, 11 Dec 2020 15:54:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:54:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-salary')
+Fri, 11 Dec 2020 15:54:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:54:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-workNat')
+Fri, 11 Dec 2020 15:54:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-workNat"]/option[5]')
+Fri, 11 Dec 2020 15:54:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 're-voluntSave')
+Fri, 11 Dec 2020 15:54:30-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 15:55:15-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 15:55:25-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:55:25-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 15:55:25-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 15:55:25-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 15:55:27-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 15:55:27-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:55:28-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 15:55:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:55:28-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 15:55:29-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:55:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 15:55:29-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:55:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 15:55:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@class="checkIn btnOn"]')
+Fri, 11 Dec 2020 15:55:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-jobArea')
+Fri, 11 Dec 2020 15:55:29-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:55:29-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 15:55:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="QX_Selected"]/ul/li[text()="武昌区"]')
+Fri, 11 Dec 2020 15:55:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:55:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-salary')
+Fri, 11 Dec 2020 15:55:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 15:55:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-workNat')
+Fri, 11 Dec 2020 15:55:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-workNat"]/option[5]')
+Fri, 11 Dec 2020 15:55:30-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 're-voluntSave')
+Fri, 11 Dec 2020 15:55:31-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 17:20:10-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 17:20:22-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:20:22-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:20:22-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:20:23-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:20:25-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:20:26-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:20:27-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:20:27-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:20:27-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:20:27-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('id', 'ed-workExpTime-strat')
+Fri, 11 Dec 2020 17:20:28-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('id', 're-workExpSave')
+Fri, 11 Dec 2020 17:20:28-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 17:30:33-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 17:30:43-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:30:43-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:30:44-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:30:44-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:30:45-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:30:46-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:30:47-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:30:47-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:30:47-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:30:47-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('id', 'ed-workExpTime-strat')
+Fri, 11 Dec 2020 17:30:49-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('id', 're-workExpSave')
+Fri, 11 Dec 2020 17:31:19-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,保存成功提示框,('id', 'SystemNoticeContent')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 17:31:19-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/保存成功提示框_20201211_173119.png
+Fri, 11 Dec 2020 17:31:26-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 17:31:35-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:31:35-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:31:35-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:31:36-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:31:37-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:32:02-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 17:32:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:32:12-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:32:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:32:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:32:14-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:32:14-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:32:14-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:32:50-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 17:33:00-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:33:00-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:33:00-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:33:00-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:33:02-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:33:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:33:02-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:33:32-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,添加工作经历,('xpath', '//a[text()="添加工作"]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 17:33:38-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加工作经历_20201211_173332.png
+Fri, 11 Dec 2020 17:35:36-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 17:35:48-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:35:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:35:48-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:35:48-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:35:50-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:35:50-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:35:51-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:35:51-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:35:51-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:36:03-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('id', 'ed-workExpTime-strat')
+Fri, 11 Dec 2020 17:36:04-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('id', 're-workExpSave')
+Fri, 11 Dec 2020 17:36:04-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 17:36:12-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 17:36:22-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:36:22-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:36:22-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:36:22-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:36:24-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:36:24-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:36:25-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:36:25-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:36:25-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:36:26-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('id', 'ed-workExpTime-strat')
+Fri, 11 Dec 2020 17:36:27-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('id', 're-workExpSave')
+Fri, 11 Dec 2020 17:36:27-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 17:38:29-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 17:38:40-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:38:40-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:38:40-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:38:41-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:38:42-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:38:43-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:38:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:38:44-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 17:38:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 17:38:44-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 17:38:44-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 17:39:14-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,添加求职志愿,('id', '010110')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Fri, 11 Dec 2020 17:39:33-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加求职志愿_20201211_173914.png
+Fri, 11 Dec 2020 17:39:48-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:39:48-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:39:48-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:39:49-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:39:50-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:39:50-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:39:51-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:39:51-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:39:52-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:39:52-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('id', 'ed-workExpTime-strat')
+Fri, 11 Dec 2020 17:39:53-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('id', 're-workExpSave')
+Fri, 11 Dec 2020 17:39:54-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 17:40:42-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Fri, 11 Dec 2020 17:40:52-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:40:53-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:40:53-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:40:53-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:40:54-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:40:55-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:40:56-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:40:56-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 17:40:56-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//a[text()="添加意向"]')
+Fri, 11 Dec 2020 17:40:56-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 17:40:56-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@id="ed-function"]')
+Fri, 11 Dec 2020 17:40:56-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 17:40:57-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', '010110')
+Fri, 11 Dec 2020 17:40:57-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//input[@class="checkIn btnOn"]')
+Fri, 11 Dec 2020 17:40:57-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-jobArea')
+Fri, 11 Dec 2020 17:40:57-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 17:40:57-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="CS_Selected"]/ul/li[text()="武汉市"]')
+Fri, 11 Dec 2020 17:40:58-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//div[@id="QX_Selected"]/ul/li[text()="武昌区"]')
+Fri, 11 Dec 2020 17:40:58-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 17:40:58-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-salary')
+Fri, 11 Dec 2020 17:40:58-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-salary"]/option[4]')
+Fri, 11 Dec 2020 17:40:58-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 'ed-workNat')
+Fri, 11 Dec 2020 17:40:58-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('xpath', '//select[@id="ed-workNat"]/option[5]')
+Fri, 11 Dec 2020 17:40:58-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加求职志愿,('id', 're-voluntSave')
+Fri, 11 Dec 2020 17:40:59-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')
+Fri, 11 Dec 2020 17:41:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:41:12-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', '//a[text()="个人登录"]')
+Fri, 11 Dec 2020 17:41:12-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人登录,('id', 'login-name')
+Fri, 11 Dec 2020 17:41:13-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Fri, 11 Dec 2020 17:41:14-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人登录,('xpath', "//button[@class='login-butn']")
+Fri, 11 Dec 2020 17:41:15-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:41:16-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：个人中心页面-点击简历管理,('xpath', '//a[text()="简历管理"]')
+Fri, 11 Dec 2020 17:41:16-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:41:16-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('xpath', '//a[text()="添加工作"]')
+Fri, 11 Dec 2020 17:41:16-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,添加工作经历,('id', 'ed-workExpTime-strat')
+Fri, 11 Dec 2020 17:41:18-INFO-base_page.py click_element [line:76] root-日志信息：点击成功：添加工作经历,('id', 're-workExpSave')
+Fri, 11 Dec 2020 17:41:18-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,保存成功提示框,('id', 'SystemNoticeContent')

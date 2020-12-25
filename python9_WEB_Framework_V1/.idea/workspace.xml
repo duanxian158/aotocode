@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="60755ff0-0038-45d9-9e3a-25524f93c589" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="test_create_job.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TestCases/test_create_job.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="20" column="73" lean-forward="false" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
+              <folding>
+                <element signature="e#107#120#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="report.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HtmlTestReport/report.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="report20201209.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HtmlTestReport/report20201209.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="report20201218 180000.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HtmlTestReport/report20201218 180000.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="我要入驻-创建岗位_20201222_094315.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ScreenShot/我要入驻-创建岗位_20201222_094315.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base_page.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Common/base_page.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1862">
+              <caret line="106" column="55" lean-forward="false" selection-start-line="106" selection-start-column="55" selection-end-line="106" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create_job_page.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PageObjects/CompanyCenterPageObjects/create_job_page.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="37" column="43" lean-forward="false" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+              <folding>
+                <element signature="e#106#117#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>e</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/PageLocators/index_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageLocators/person_regist_page_locator.py" />
+        <option value="$PROJECT_DIR$/TestDatas/personregist_datas.py" />
+        <option value="$PROJECT_DIR$/PageLocators/person_login_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageObjects/person_regist_page.py" />
+        <option value="$PROJECT_DIR$/PageObjects/person_login_page.py" />
+        <option value="$PROJECT_DIR$/Common/ramdon_phone.py" />
+        <option value="$PROJECT_DIR$/TestCases/test_company_regist.py" />
+        <option value="$PROJECT_DIR$/Common/ramdon_fun.py" />
+        <option value="$PROJECT_DIR$/PageObjects/index_page.py" />
+        <option value="$PROJECT_DIR$/TestCases/test_canbejobfair.py" />
+        <option value="$PROJECT_DIR$/TestCases/test_person_login.py" />
+        <option value="$PROJECT_DIR$/PageObjects/login_page.py" />
+        <option value="$PROJECT_DIR$/PageLocators/PersonalCenter/job_search_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageLocators/PersonalCenter/job_detail_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageLocators/PersonalCenter/job_search_page.py" />
+        <option value="$PROJECT_DIR$/TestDatas/CommonDatas.py" />
+        <option value="$PROJECT_DIR$/PageLocators/PersonalCenterLocators/job_ recommen_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageLocators/PersonalCenterLocators/job_detail_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageObjects/PersonalCenterPageObjects/job_ recommen_page.py" />
+        <option value="$PROJECT_DIR$/TestCases/test_collect_job.py" />
+        <option value="$PROJECT_DIR$/PageLocators/CompanyCenterLocators/O2Ojobfairmanage_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageLocators/CompanyCenterLocators/O2Omyjobfairdetail_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageObjects/CompanyCenterPageObjects/O2Ojobfairmanage_page.py" />
+        <option value="$PROJECT_DIR$/PageObjects/CompanyCenterPageObjects/O2Omyjobfairdetail_page.py" />
+        <option value="$PROJECT_DIR$/PageLocators/person_center_page_locator.py" />
+        <option value="$PROJECT_DIR$/TestCases/test_person_regist.py" />
+        <option value="$PROJECT_DIR$/PageObjects/person_center_page.py" />
+        <option value="$PROJECT_DIR$/TestCases/test_person_createresume.py" />
+        <option value="$PROJECT_DIR$/PageObjects/PersonalCenterPageObjects/job_detail_page.py" />
+        <option value="$PROJECT_DIR$/TestDatas/login_datas.py" />
+        <option value="$PROJECT_DIR$/TestCases/test_apply_job.py" />
+        <option value="$PROJECT_DIR$/PageLocators/PersonalCenterLocators/job_search_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageObjects/PersonalCenterPageObjects/job_search_page.py" />
+        <option value="$PROJECT_DIR$/TestCases/test_canbeO2Ojobfair.py" />
+        <option value="$PROJECT_DIR$/PageLocators/CompanyCenterLocators/canbein_O2Ojobfair_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageLocators/canbein_jobfair_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageObjects/CompanyCenterPageObjects/canbein_O2Ojobfair_page.py" />
+        <option value="$PROJECT_DIR$/PageObjects/canbein_jobfair_page.py" />
+        <option value="$PROJECT_DIR$/PageLocators/resume_manage_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageLocators/company_center_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageObjects/resume_manage_page.py" />
+        <option value="$PROJECT_DIR$/PageLocators/CompanyCenterLocators/unpublish_job_page_locator.py" />
+        <option value="$PROJECT_DIR$/PageObjects/CompanyCenterPageObjects/unpublish_job_page.py" />
+        <option value="$PROJECT_DIR$/PageObjects/company_center_page.py" />
+        <option value="$PROJECT_DIR$/PageObjects/CompanyCenterPageObjects/create_job_page.py" />
+        <option value="$PROJECT_DIR$/TestDatas/job_datas.py" />
+        <option value="$PROJECT_DIR$/PageLocators/CompanyCenterLocators/create_job_page_locator.py" />
+        <option value="$PROJECT_DIR$/Common/base_page.py" />
+        <option value="$PROJECT_DIR$/run.py" />
+        <option value="$PROJECT_DIR$/TestCases/test_create_job.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="393" />
+    <option name="y" value="42" />
+    <option name="width" value="1395" />
+    <option name="height" value="941" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PyInterpreterInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="python9_WEB_Framework_V1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python9_WEB_Framework_V1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="python9_WEB_Framework_V1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python9_WEB_Framework_V1" type="462c0819:PsiDirectoryNode" />
+              <item name="TestCases" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="python9_WEB_Framework_V1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python9_WEB_Framework_V1" type="462c0819:PsiDirectoryNode" />
+              <item name="TestDatas" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Python37\code\python9_WEB_Framework_V1\TestCases" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Python37\code\python9_WEB_Framework_V1\PageObjects\PersonalCenterPageObjects" />
+      <recent name="D:\Python37\code\python9_WEB_Framework_V1\PageLocators" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python tests.py.test in test_create_job.py">
+    <configuration name="run" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="python9_WEB_Framework_V1" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="py.test in test_apply_job.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TestCases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="python9_WEB_Framework_V1" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/TestCases/test_apply_job.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="py.test in test_create_job.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TestCases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="python9_WEB_Framework_V1" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/TestCases/test_create_job.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="py.test in test_person_createresume.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TestCases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="python9_WEB_Framework_V1" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/TestCases/test_person_createresume.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <configuration name="py.test in test_person_regist.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/TestCases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="python9_WEB_Framework_V1" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/TestCases/test_person_regist.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python.run" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.py.test in test_apply_job.py" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.py.test in test_person_regist.py" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.py.test in test_person_createresume.py" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.py.test in test_create_job.py" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.py.test in test_create_job.py" />
+        <item index="1" class="java.lang.String" itemvalue="Python.run" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.py.test in test_person_createresume.py" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.py.test in test_apply_job.py" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.py.test in test_person_regist.py" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\96390\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="60755ff0-0038-45d9-9e3a-25524f93c589" name="Default" comment="" />
+      <created>1604729007009</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604729007009</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="py_test_in_test_create_job_py - 2020.12.18 at 16h 37m 20s.xml">
+      <configuration name="py.test in test_create_job.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_create_job_py - 2020.12.18 at 16h 37m 44s.xml">
+      <configuration name="py.test in test_create_job.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_create_job_py - 2020.12.18 at 16h 40m 07s.xml">
+      <configuration name="py.test in test_create_job.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_create_job_py - 2020.12.18 at 16h 40m 30s.xml">
+      <configuration name="py.test in test_create_job.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_create_job_py - 2020.12.18 at 16h 43m 46s.xml">
+      <configuration name="py.test in test_create_job.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_create_job_py - 2020.12.18 at 16h 45m 31s.xml">
+      <configuration name="py.test in test_create_job.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_create_job_py - 2020.12.18 at 16h 47m 10s.xml">
+      <configuration name="py.test in test_create_job.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_create_job_py - 2020.12.18 at 16h 53m 10s.xml">
+      <configuration name="py.test in test_create_job.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_create_job_py - 2020.12.18 at 16h 53m 33s.xml">
+      <configuration name="py.test in test_create_job.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="py_test_in_test_create_job_py - 2020.12.22 at 09h 58m 16s.xml">
+      <configuration name="py.test in test_create_job.py" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17913593" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39935064" sideWeight="0.5021075" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22077923" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981578" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30952382" sideWeight="0.49789253" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="0" y="0" width="298" height="741" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2249691" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="91" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self.account_nname" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ScreenShot/我要入驻-创建岗位_20201218_112936.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/我要入驻-创建岗位_20201218_112908.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/岗位搜索-申请职位_20201218_110545.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/岗位搜索-申请职位_20201218_104639.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/岗位搜索-申请职位_20201218_104603.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/可入驻O2O招聘会-通过导入岗位入驻_20201218_140910.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/添加工作经历_20201218_144742.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/添加工作经历_20201218_144719.png" />
+    <entry file="file://$PROJECT_DIR$/PageLocators/company_center_page_locator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ScreenShot/获取企业名称_20201218_150528.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/添加求职志愿_20201218_150852.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/删除求职意向_20201218_151217.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/删除求职意向_20201218_151055.png" />
+    <entry file="file://$PROJECT_DIR$/PageObjects/resume_manage_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="119" column="61" lean-forward="false" selection-start-line="119" selection-start-column="61" selection-end-line="119" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ScreenShot/获取企业名称_20201218_152753.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/获取企业名称_20201218_152657.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/获取企业名称_20201218_152618.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/获取企业名称_20201218_150722.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/点击网络招聘会_20201218_152446.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/添加求职志愿_20201218_150935.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/添加求职志愿_20201218_153007.png" />
+    <entry file="file://$PROJECT_DIR$/PageLocators/CompanyCenterLocators/unpublish_job_page_locator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" column="55" lean-forward="false" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageLocators/canbein_jobfair_page_locator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="38" column="80" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="38" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageLocators/resume_manage_page_locator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="46" column="85" lean-forward="true" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageObjects/CompanyCenterPageObjects/unpublish_job_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="59" lean-forward="false" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestCases/test_canbejobfair.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="30" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageObjects/company_center_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="18" column="57" lean-forward="false" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestCases/test_canbeO2Ojobfair.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="38" column="62" lean-forward="false" selection-start-line="38" selection-start-column="62" selection-end-line="38" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageObjects/CompanyCenterPageObjects/canbein_O2Ojobfair_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ScreenShot/保存或删除成功提示框_20201218_151311.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/创建岗位保存_20201218_163054.png" />
+    <entry file="file://$PROJECT_DIR$/TestDatas/job_datas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="35" lean-forward="false" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageLocators/CompanyCenterLocators/create_job_page_locator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="29" column="58" lean-forward="false" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestCases/test_person_createresume.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1273">
+          <caret line="73" column="19" lean-forward="false" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Common/base_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1862">
+          <caret line="106" column="55" lean-forward="false" selection-start-line="106" selection-start-column="55" selection-end-line="106" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="10" column="36" lean-forward="false" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PageObjects/CompanyCenterPageObjects/create_job_page.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="37" column="43" lean-forward="false" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+          <folding>
+            <element signature="e#106#117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestCases/test_create_job.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="20" column="73" lean-forward="false" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
+          <folding>
+            <element signature="e#107#120#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ScreenShot/岗位搜索_20201221_100458.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/点击岗位管理_20201221_101106.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/点击岗位管理_20201221_101143.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/个人中心页面-点击简历管理_20201218_151018.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/个人中心页面-点击简历管理_20201218_152927.png" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/获取个人手机号_20201221_101627.png" />
+    <entry file="file://$PROJECT_DIR$/HtmlTestReport/report.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HtmlTestReport/report20201209.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HtmlTestReport/report20201218 174005.html" />
+    <entry file="file://$PROJECT_DIR$/ScreenShot/我要入驻-创建岗位_20201222_094315.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ScreenShot/我要入驻-创建岗位_20201222_094355.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ScreenShot/我要入驻-创建岗位_20201222_094438.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HtmlTestReport/report20201218 180000.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

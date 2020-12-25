@@ -1,0 +1,65 @@
+Thu, 10 Dec 2020 16:41:43-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Thu, 10 Dec 2020 16:41:52-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人注册,('xpath', '//a[text()="个人登录"]/following::a[1]')
+Thu, 10 Dec 2020 16:41:53-INFO-base_page.py click_element [line:76] root-日志信息：点击成功
+Thu, 10 Dec 2020 16:41:53-INFO-ramdon_phone.py create_phone [line:23] root-日志信息：随机生成手机号：18457251383
+Thu, 10 Dec 2020 16:41:53-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人注册,('id', 'iphone')
+Thu, 10 Dec 2020 16:41:53-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Thu, 10 Dec 2020 16:41:54-INFO-base_page.py click_element [line:76] root-日志信息：点击成功
+Thu, 10 Dec 2020 16:41:54-INFO-base_page.py click_element [line:76] root-日志信息：点击成功
+Thu, 10 Dec 2020 16:42:01-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,获取个人账户名称,('xpath', '//span[@id="hname"]')
+Thu, 10 Dec 2020 16:43:33-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Thu, 10 Dec 2020 16:43:42-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人注册,('xpath', '//a[text()="个人登录"]/following::a[1]')
+Thu, 10 Dec 2020 16:43:42-INFO-base_page.py click_element [line:76] root-日志信息：点击成功
+Thu, 10 Dec 2020 16:43:42-INFO-ramdon_phone.py create_phone [line:23] root-日志信息：随机生成手机号：17375709686
+Thu, 10 Dec 2020 16:43:42-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人注册,('id', 'iphone')
+Thu, 10 Dec 2020 16:43:43-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Thu, 10 Dec 2020 16:43:50-INFO-base_page.py click_element [line:76] root-日志信息：点击成功
+Thu, 10 Dec 2020 16:43:51-INFO-base_page.py click_element [line:76] root-日志信息：点击成功
+Thu, 10 Dec 2020 16:43:59-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取个人账户名称,('xpath', '//span[@id="hname"]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 71, in until
+    value = method(self._driver)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 128, in __call__
+    return _element_if_visible(_find_element(driver, self.locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 415, in _find_element
+    raise e
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\expected_conditions.py", line 411, in _find_element
+    return driver.find_element(*by)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: chrome not reachable
+  (Session info: chrome=87.0.4280.88)
+
+Thu, 10 Dec 2020 16:44:06-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Thu, 10 Dec 2020 16:44:15-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人注册,('xpath', '//a[text()="个人登录"]/following::a[1]')
+Thu, 10 Dec 2020 16:44:15-INFO-base_page.py click_element [line:76] root-日志信息：点击成功
+Thu, 10 Dec 2020 16:44:15-INFO-ramdon_phone.py create_phone [line:23] root-日志信息：随机生成手机号：14725414203
+Thu, 10 Dec 2020 16:44:15-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人注册,('id', 'iphone')
+Thu, 10 Dec 2020 16:44:15-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Thu, 10 Dec 2020 16:44:16-INFO-base_page.py click_element [line:76] root-日志信息：点击成功
+Thu, 10 Dec 2020 16:44:17-INFO-base_page.py click_element [line:76] root-日志信息：点击成功
+Thu, 10 Dec 2020 16:44:23-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,获取个人账户名称,('xpath', '//span[@id="hname"]')
+Thu, 10 Dec 2020 16:50:53-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Thu, 10 Dec 2020 16:51:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人注册,('xpath', '//a[text()="个人登录"]/following::a[1]')
+Thu, 10 Dec 2020 16:51:02-INFO-base_page.py click_element [line:76] root-日志信息：个人注册点击成功
+Thu, 10 Dec 2020 16:51:02-INFO-ramdon_phone.py create_phone [line:23] root-日志信息：随机生成手机号：15171783971
+Thu, 10 Dec 2020 16:51:02-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人注册,('id', 'iphone')
+Thu, 10 Dec 2020 16:51:03-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Thu, 10 Dec 2020 16:51:04-INFO-base_page.py click_element [line:76] root-日志信息：个人注册点击成功
+Thu, 10 Dec 2020 16:51:04-INFO-base_page.py click_element [line:76] root-日志信息：个人注册点击成功
+Thu, 10 Dec 2020 16:51:10-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,获取个人账户名称,('xpath', '//span[@id="hname"]')
+Thu, 10 Dec 2020 17:10:09-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Thu, 10 Dec 2020 17:10:41-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人注册,('xpath', '//a[text()="个人登录"]/following::a[1]')
+Thu, 10 Dec 2020 17:10:42-INFO-base_page.py click_element [line:76] root-日志信息：个人注册点击成功
+Thu, 10 Dec 2020 17:10:42-INFO-ramdon_phone.py create_phone [line:23] root-日志信息：随机生成手机号：17772535198
+Thu, 10 Dec 2020 17:10:42-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,个人注册,('id', 'iphone')
+Thu, 10 Dec 2020 17:10:43-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,,('xpath', "//img[@class='piccodebutn']")
+Thu, 10 Dec 2020 17:10:44-INFO-base_page.py click_element [line:76] root-日志信息：个人注册点击成功
+Thu, 10 Dec 2020 17:10:44-INFO-base_page.py click_element [line:76] root-日志信息：个人注册点击成功
+Thu, 10 Dec 2020 17:10:50-INFO-base_page.py wait_eleVisible [line:33] root-日志信息：元素可见成功：,获取个人账户名称,('xpath', '//span[@id="hname"]')

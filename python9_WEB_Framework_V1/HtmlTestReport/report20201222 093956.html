@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) { // eslint-disable-line no-redeclare
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function find_all(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sort_column(elem) {
+    toggle_sort_states(elem);
+    const colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    let key;
+    if (elem.classList.contains('numeric')) {
+        key = key_num;
+    } else if (elem.classList.contains('result')) {
+        key = key_result;
+    } else if (elem.classList.contains('links')) {
+        key = key_link;
+    } else {
+        key = key_alpha;
+    }
+    sort_table(elem, key(colIndex));
+}
+
+function show_all_extras() { // eslint-disable-line no-unused-vars
+    find_all('.col-result').forEach(show_extras);
+}
+
+function hide_all_extras() { // eslint-disable-line no-unused-vars
+    find_all('.col-result').forEach(hide_extras);
+}
+
+function show_extras(colresult_elem) {
+    const extras = colresult_elem.parentNode.nextElementSibling;
+    const expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.remove('collapsed');
+    expandcollapse.classList.remove('expander');
+    expandcollapse.classList.add('collapser');
+}
+
+function hide_extras(colresult_elem) {
+    const extras = colresult_elem.parentNode.nextElementSibling;
+    const expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.add('collapsed');
+    expandcollapse.classList.remove('collapser');
+    expandcollapse.classList.add('expander');
+}
+
+function show_filters() {
+    const filter_items = document.getElementsByClassName('filter');
+    for (let i = 0; i < filter_items.length; i++)
+        filter_items[i].hidden = false;
+}
+
+function add_collapse() {
+    // Add links for show/hide all
+    const resulttable = find('table#results-table');
+    const showhideall = document.createElement('p');
+    showhideall.innerHTML = '<a href="javascript:show_all_extras()">Show all details</a> / ' +
+                            '<a href="javascript:hide_all_extras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    find_all('.col-result').forEach(function(elem) {
+        const collapsed = get_query_parameter('collapsed') || 'Passed';
+        const extras = elem.parentNode.nextElementSibling;
+        const expandcollapse = document.createElement('span');
+        if (extras.classList.contains('collapsed')) {
+            expandcollapse.classList.add('expander');
+        } else if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add('collapsed');
+            expandcollapse.classList.add('expander');
+        } else {
+            expandcollapse.classList.add('collapser');
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener('click', function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains('collapsed')) {
+                show_extras(event.currentTarget);
+            } else {
+                hide_extras(event.currentTarget);
+            }
+        });
+    });
+}
+
+function get_query_parameter(name) {
+    const match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () { // eslint-disable-line no-unused-vars
+    reset_sort_headers();
+
+    add_collapse();
+
+    show_filters();
+
+    sort_column(find('.initial-sort'));
+
+    find_all('.sortable').forEach(function(elem) {
+        elem.addEventListener('click',
+            function() {
+                sort_column(elem);
+            }, false);
+    });
+}
+
+function sort_table(clicked, key_func) {
+    const rows = find_all('.results-table-row');
+    const reversed = !clicked.classList.contains('asc');
+    const sorted_rows = sort(rows, key_func, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    const thead = document.getElementById('results-table-head');
+    document.getElementById('results-table').remove();
+    const parent = document.createElement('table');
+    parent.id = 'results-table';
+    parent.appendChild(thead);
+    sorted_rows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName('BODY')[0].appendChild(parent);
+}
+
+function sort(items, key_func, reversed) {
+    const sort_array = items.map(function(item, i) {
+        return [key_func(item), i];
+    });
+
+    sort_array.sort(function(a, b) {
+        const key_a = a[0];
+        const key_b = b[0];
+
+        if (key_a == key_b) return 0;
+
+        if (reversed) {
+            return key_a < key_b ? 1 : -1;
+        } else {
+            return key_a > key_b ? 1 : -1;
+        }
+    });
+
+    return sort_array.map(function(item) {
+        const index = item[1];
+        return items[index];
+    });
+}
+
+function key_alpha(col_index) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[col_index].firstChild.data.toLowerCase();
+    };
+}
+
+function key_num(col_index) {
+    return function(elem) {
+        return parseFloat(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function key_link(col_index) {
+    return function(elem) {
+        const dataCell = elem.childNodes[1].childNodes[col_index].firstChild;
+        return dataCell == null ? '' : dataCell.innerText.toLowerCase();
+    };
+}
+
+function key_result(col_index) {
+    return function(elem) {
+        const strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+            'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function reset_sort_headers() {
+    find_all('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    find_all('.sortable').forEach(function(elem) {
+        const icon = document.createElement('div');
+        icon.className = 'sort-icon';
+        icon.textContent = 'vvv';
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove('desc', 'active');
+        elem.classList.add('asc', 'inactive');
+    });
+}
+
+function toggle_sort_states(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        reset_sort_headers();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function is_all_rows_hidden(value) {
+    return value.hidden == false;
+}
+
+function filter_table(elem) { // eslint-disable-line no-unused-vars
+    const outcome_att = 'data-test-result';
+    const outcome = elem.getAttribute(outcome_att);
+    const class_outcome = outcome + ' results-table-row';
+    const outcome_rows = document.getElementsByClassName(class_outcome);
+
+    for(let i = 0; i < outcome_rows.length; i++){
+        outcome_rows[i].hidden = !elem.checked;
+    }
+
+    const rows = find_all('.results-table-row').filter(is_all_rows_hidden);
+    const all_rows_hidden = rows.length == 0 ? true : false;
+    const not_found_message = document.getElementById('not-found-message');
+    not_found_message.hidden = !all_rows_hidden;
+}
+</script>
+    <h1>report20201222 093956.html</h1>
+    <p>Report generated on 22-Dec-2020 at 09:52:28 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.0.0</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>BUILD_ID</td>
+        <td>36</td></tr>
+      <tr>
+        <td>BUILD_NUMBER</td>
+        <td>36</td></tr>
+      <tr>
+        <td>BUILD_TAG</td>
+        <td>jenkins-python9_web_pytest_QCD_Smoke-36</td></tr>
+      <tr>
+        <td>BUILD_URL</td>
+        <td><a href="http://192.0.88.189:8088/job/python9_web_pytest_QCD_Smoke/36/" target="_blank">http://192.0.88.189:8088/job/python9_web_pytest_QCD_Smoke/36/</a></td></tr>
+      <tr>
+        <td>EXECUTOR_NUMBER</td>
+        <td>0</td></tr>
+      <tr>
+        <td>JAVA_HOME</td>
+        <td>C:\Program Files\Java\jdk1.8.0_121</td></tr>
+      <tr>
+        <td>JENKINS_URL</td>
+        <td><a href="http://192.0.88.189:8088/" target="_blank">http://192.0.88.189:8088/</a></td></tr>
+      <tr>
+        <td>JOB_NAME</td>
+        <td>python9_web_pytest_QCD_Smoke</td></tr>
+      <tr>
+        <td>NODE_NAME</td>
+        <td>master</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{"pluggy": "0.13.1", "py": "1.9.0", "pytest": "6.1.1"}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.17763-SP0</td></tr>
+      <tr>
+        <td>Plugins</td>
+        <td>{"html": "3.0.0", "metadata": "1.10.0", "rerunfailures": "9.1.1"}</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.7.0</td></tr>
+      <tr>
+        <td>WORKSPACE</td>
+        <td>C:\WINDOWS\system32\config\systemprofile\AppData\Local\Jenkins.jenkins\workspace\python9_web_pytest_QCD_Smoke</td></tr></table>
+    <h2>Summary</h2>
+    <p>18 tests ran in 751.27 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">16 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">2 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>, <input checked="true" class="filter" data-test-result="rerun" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="rerun">7 rerun</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable numeric" col="duration">Duration</th>
+          <th class="sortable links" col="links">Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">TestCases/test_canbejobfair.py::TestCanbeJobfair::test_canbejobfair_creatjob</td>
+          <td class="col-duration">100.65</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;TestCases.test_canbejobfair.TestCanbeJobfair object at 0x000002679397FB00&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;3552c04229f0fef8690c2fb6e9f72490&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x00000267938A7A90&gt;]<br/><br/>    def test_canbejobfair_creatjob(self,init_indexEnv):<br/>        # 步聚 1.企业登录页面-登录 2.企业中心页面-点击招聘会管理-网络招聘会  3.点击可入驻招聘会  4.我要入驻  5 创建新岗位提交<br/>        init_indexEnv[1].click_companylogin()<br/>        LoginPage(init_indexEnv[0]).login(login_succs[&quot;username&quot;], login_succs[&quot;passwd&quot;])<br/>        CompanyCenterPage(init_indexEnv[0]).cilick_jobfair()<br/>        MyJobFairPage(init_indexEnv[0]).click_canbejobfair()<br/>&gt;       CanbeJobFairPage(init_indexEnv[0]).click_intojobfair_creatjob(job_sucess[&quot;gwname&quot;],job_sucess[&quot;zprs&quot;],job_sucess[&quot;zplxr&quot;],job_sucess[&quot;lxrphone&quot;])<br/><br/>TestCases\test_canbejobfair.py:38: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\canbein_jobfair_page.py:31: in click_intojobfair_creatjob<br/>    self.wait_eleVisible(self.into_button, model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;3552c04229f0fef8690c2fb6e9f72490&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938A7A58&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutExceptionself = &lt;TestCases.test_canbejobfair.TestCanbeJobfair object at 0x0000026793896C18&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;ad42a983926d636100ca3935b021e6a4&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x00000267938C6CC0&gt;]<br/><br/>    def test_canbejobfair_creatjob(self,init_indexEnv):<br/>        # 步聚 1.企业登录页面-登录 2.企业中心页面-点击招聘会管理-网络招聘会  3.点击可入驻招聘会  4.我要入驻  5 创建新岗位提交<br/>        init_indexEnv[1].click_companylogin()<br/>        LoginPage(init_indexEnv[0]).login(login_succs[&quot;username&quot;], login_succs[&quot;passwd&quot;])<br/>        CompanyCenterPage(init_indexEnv[0]).cilick_jobfair()<br/>        MyJobFairPage(init_indexEnv[0]).click_canbejobfair()<br/>&gt;       CanbeJobFairPage(init_indexEnv[0]).click_intojobfair_creatjob(job_sucess[&quot;gwname&quot;],job_sucess[&quot;zprs&quot;],job_sucess[&quot;zplxr&quot;],job_sucess[&quot;lxrphone&quot;])<br/><br/>TestCases\test_canbejobfair.py:38: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\canbein_jobfair_page.py:31: in click_intojobfair_creatjob<br/>    self.wait_eleVisible(self.into_button, model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;ad42a983926d636100ca3935b021e6a4&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938C6C88&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutExceptionself = &lt;TestCases.test_canbejobfair.TestCanbeJobfair object at 0x00000267938EB9E8&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;aec937d0a0f3a2b12e4d3764b0536b7a&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x00000267938EB0F0&gt;]<br/><br/>    def test_canbejobfair_creatjob(self,init_indexEnv):<br/>        # 步聚 1.企业登录页面-登录 2.企业中心页面-点击招聘会管理-网络招聘会  3.点击可入驻招聘会  4.我要入驻  5 创建新岗位提交<br/>        init_indexEnv[1].click_companylogin()<br/>        LoginPage(init_indexEnv[0]).login(login_succs[&quot;username&quot;], login_succs[&quot;passwd&quot;])<br/>        CompanyCenterPage(init_indexEnv[0]).cilick_jobfair()<br/>        MyJobFairPage(init_indexEnv[0]).click_canbejobfair()<br/>&gt;       CanbeJobFairPage(init_indexEnv[0]).click_intojobfair_creatjob(job_sucess[&quot;gwname&quot;],job_sucess[&quot;zprs&quot;],job_sucess[&quot;zplxr&quot;],job_sucess[&quot;lxrphone&quot;])<br/><br/>TestCases\test_canbejobfair.py:38: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\canbein_jobfair_page.py:31: in click_intojobfair_creatjob<br/>    self.wait_eleVisible(self.into_button, model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;aec937d0a0f3a2b12e4d3764b0536b7a&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938EB128&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutException<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:43:15-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:43:16-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094315.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    root:base_page.py:37 等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094315.png<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:43:55-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:43:55-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094355.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    root:base_page.py:37 等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094355.png<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:44:38-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:44:38-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094438.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    root:base_page.py:37 等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094438.png<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">TestCases/test_company_regist.py::TestCompanyRegist::test_companyregist_sucess</td>
+          <td class="col-duration">105.03</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;TestCases.test_company_regist.TestCompanyRegist object at 0x00000267938E72B0&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;ea6ec83f48f1ed04c2334846a44b7bb9&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x00000267938E7C50&gt;]<br/><br/>    def test_companyregist_sucess(self,init_indexEnv):<br/>        # 1.首页-招聘企业注册<br/>        init_indexEnv[1].click_companyregist()<br/>        #手机号随机获取<br/>        phone = RamdonFun().create_phone()<br/>        # 2.企业注册页面-填写信息-点击下一步<br/>        CompantyRegistOnePage(init_indexEnv[0]).click_registone(companyregist_sucess[&quot;codetypeno&quot;],companyregist_sucess[&quot;companyname&quot;],companyregist_sucess[&quot;companyno&quot;],companyregist_sucess[&quot;companypwd&quot;],companyregist_sucess[&quot;companypwd2&quot;])<br/>        # 3.下一步页面-填写信息-点击注册<br/>        CompantyRegistNextPage(init_indexEnv[0]).click_registnext(companyregist_sucess[&quot;managename&quot;],companyregist_sucess[&quot;manageidcard&quot;],phone,companyregist_sucess[&quot;phonecode&quot;])<br/>        # 4.注册成功-跳转至企业中心页面<br/>&gt;       assert CompanyCenterPage(init_indexEnv[0]).get_companyname()== companyregist_sucess[&quot;check&quot;]<br/><br/>TestCases\test_company_regist.py:26: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\company_center_page.py:45: in get_companyname<br/>    self.wait_eleVisible(self.company_name,model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;ea6ec83f48f1ed04c2334846a44b7bb9&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938E7AC8&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutExceptionself = &lt;TestCases.test_company_regist.TestCompanyRegist object at 0x000002679397FD30&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;a60d1fd834afdb8c4b126dce07724f2a&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x0000026793896898&gt;]<br/><br/>    def test_companyregist_sucess(self,init_indexEnv):<br/>        # 1.首页-招聘企业注册<br/>        init_indexEnv[1].click_companyregist()<br/>        #手机号随机获取<br/>        phone = RamdonFun().create_phone()<br/>        # 2.企业注册页面-填写信息-点击下一步<br/>        CompantyRegistOnePage(init_indexEnv[0]).click_registone(companyregist_sucess[&quot;codetypeno&quot;],companyregist_sucess[&quot;companyname&quot;],companyregist_sucess[&quot;companyno&quot;],companyregist_sucess[&quot;companypwd&quot;],companyregist_sucess[&quot;companypwd2&quot;])<br/>        # 3.下一步页面-填写信息-点击注册<br/>        CompantyRegistNextPage(init_indexEnv[0]).click_registnext(companyregist_sucess[&quot;managename&quot;],companyregist_sucess[&quot;manageidcard&quot;],phone,companyregist_sucess[&quot;phonecode&quot;])<br/>        # 4.注册成功-跳转至企业中心页面<br/>&gt;       assert CompanyCenterPage(init_indexEnv[0]).get_companyname()== companyregist_sucess[&quot;check&quot;]<br/><br/>TestCases\test_company_regist.py:26: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\company_center_page.py:45: in get_companyname<br/>    self.wait_eleVisible(self.company_name,model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;a60d1fd834afdb8c4b126dce07724f2a&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938964A8&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutExceptionself = &lt;TestCases.test_company_regist.TestCompanyRegist object at 0x00000267938D6BA8&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;1ee5a6350c9dfbcc5b9238e53fde5b47&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x00000267938D6B00&gt;]<br/><br/>    def test_companyregist_sucess(self,init_indexEnv):<br/>        # 1.首页-招聘企业注册<br/>        init_indexEnv[1].click_companyregist()<br/>        #手机号随机获取<br/>        phone = RamdonFun().create_phone()<br/>        # 2.企业注册页面-填写信息-点击下一步<br/>        CompantyRegistOnePage(init_indexEnv[0]).click_registone(companyregist_sucess[&quot;codetypeno&quot;],companyregist_sucess[&quot;companyname&quot;],companyregist_sucess[&quot;companyno&quot;],companyregist_sucess[&quot;companypwd&quot;],companyregist_sucess[&quot;companypwd2&quot;])<br/>        # 3.下一步页面-填写信息-点击注册<br/>        CompantyRegistNextPage(init_indexEnv[0]).click_registnext(companyregist_sucess[&quot;managename&quot;],companyregist_sucess[&quot;manageidcard&quot;],phone,companyregist_sucess[&quot;phonecode&quot;])<br/>        # 4.注册成功-跳转至企业中心页面<br/>&gt;       assert CompanyCenterPage(init_indexEnv[0]).get_companyname()== companyregist_sucess[&quot;check&quot;]<br/><br/>TestCases\test_company_regist.py:26: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\company_center_page.py:45: in get_companyname<br/>    self.wait_eleVisible(self.company_name,model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;1ee5a6350c9dfbcc5b9238e53fde5b47&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938D6F28&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutException<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:44:56-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：18363238733
+Tue, 22 Dec 2020 09:45:15-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:45:15-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094515.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:ramdon_fun.py:25 随机生成手机号：18363238733
+ERROR    root:base_page.py:37 等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094515.png<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:45:38-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：18366062020
+Tue, 22 Dec 2020 09:45:58-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:45:58-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094558.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:ramdon_fun.py:25 随机生成手机号：18366062020
+ERROR    root:base_page.py:37 等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094558.png<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:46:20-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：17625153372
+Tue, 22 Dec 2020 09:46:38-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:46:38-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094638.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:ramdon_fun.py:25 随机生成手机号：17625153372
+ERROR    root:base_page.py:37 等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094638.png<br/></div></td></tr></tbody>
+      <tbody class="rerun results-table-row">
+        <tr>
+          <td class="col-result">Rerun</td>
+          <td class="col-name">TestCases/test_apply_job.py::TestApplyJob::test_applyjob_success</td>
+          <td class="col-duration">5.07</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;TestCases.test_apply_job.TestApplyJob object at 0x0000026792F02320&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;f63da26dc470b4613518e644cb50663e&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x0000026792F4E550&gt;]<br/><br/>    @pytest.mark.applyjob1<br/>    def test_applyjob_success(self,init_indexEnv):<br/>        # 1.首页-个人登录<br/>        IndexPage(init_indexEnv[0]).click_personlogin()<br/>        # 2.登录页面-输入账号密码-登录成功<br/>        PersonLoginPage(init_indexEnv[0]).person_login(person_login_succs[&quot;username&quot;],person_login_succs[&quot;passwd&quot;])<br/>        # 3.个人中心页面-点击菜单-岗位搜索<br/>&gt;       PersonCenterPage(init_indexEnv[0]).click_jobsearch()<br/><br/>TestCases\test_apply_job.py:26: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\person_center_page.py:38: in click_jobsearch<br/>    self.click_element(self.jobsearch_menu,model=name)<br/>Common\base_page.py:75: in click_element<br/>    ele.click()<br/>..\..\lib\site-packages\selenium\webdriver\remote\webelement.py:80: in click<br/>    self._execute(Command.CLICK_ELEMENT)<br/>..\..\lib\site-packages\selenium\webdriver\remote\webelement.py:633: in _execute<br/>    return self._parent.execute(command, params)<br/>..\..\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute<br/>    self.error_handler.check_response(response)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x0000026792F184A8&gt;<br/>response = {&#x27;status&#x27;: 400, &#x27;value&#x27;: &#x27;{&quot;value&quot;:{&quot;error&quot;:&quot;element click intercepted&quot;,&quot;message&quot;:&quot;element click intercepted: Element ...\n\\tRtlGetAppContainerNamedObjectPath [0x77C466DD+237]\\n\\tRtlGetAppContainerNamedObjectPath [0x77C466AD+189]\\n&quot;}}&#x27;}<br/><br/>    def check_response(self, response):<br/>        &quot;&quot;&quot;<br/>        Checks that a JSON response from the WebDriver does not have an error.<br/>    <br/>        :Args:<br/>         - response - The JSON response from the WebDriver server as a dictionary<br/>           object.<br/>    <br/>        :Raises: If the response contains an error message.<br/>        &quot;&quot;&quot;<br/>        status = response.get(&#x27;status&#x27;, None)<br/>        if status is None or status == ErrorCode.SUCCESS:<br/>            return<br/>        value = None<br/>        message = response.get(&quot;message&quot;, &quot;&quot;)<br/>        screen = response.get(&quot;screen&quot;, &quot;&quot;)<br/>        stacktrace = None<br/>        if isinstance(status, int):<br/>            value_json = response.get(&#x27;value&#x27;, None)<br/>            if value_json and isinstance(value_json, basestring):<br/>                import json<br/>                try:<br/>                    value = json.loads(value_json)<br/>                    if len(value.keys()) == 1:<br/>                        value = value[&#x27;value&#x27;]<br/>                    status = value.get(&#x27;error&#x27;, None)<br/>                    if status is None:<br/>                        status = value[&quot;status&quot;]<br/>                        message = value[&quot;value&quot;]<br/>                        if not isinstance(message, basestring):<br/>                            value = message<br/>                            message = message.get(&#x27;message&#x27;)<br/>                    else:<br/>                        message = value.get(&#x27;message&#x27;, None)<br/>                except ValueError:<br/>                    pass<br/>    <br/>        exception_class = ErrorInResponseException<br/>        if status in ErrorCode.NO_SUCH_ELEMENT:<br/>            exception_class = NoSuchElementException<br/>        elif status in ErrorCode.NO_SUCH_FRAME:<br/>            exception_class = NoSuchFrameException<br/>        elif status in ErrorCode.NO_SUCH_WINDOW:<br/>            exception_class = NoSuchWindowException<br/>        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:<br/>            exception_class = StaleElementReferenceException<br/>        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:<br/>            exception_class = ElementNotVisibleException<br/>        elif status in ErrorCode.INVALID_ELEMENT_STATE:<br/>            exception_class = InvalidElementStateException<br/>        elif status in ErrorCode.INVALID_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:<br/>            exception_class = InvalidSelectorException<br/>        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:<br/>            exception_class = ElementNotSelectableException<br/>        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:<br/>            exception_class = ElementNotInteractableException<br/>        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:<br/>            exception_class = InvalidCookieDomainException<br/>        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:<br/>            exception_class = UnableToSetCookieException<br/>        elif status in ErrorCode.TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.SCRIPT_TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.UNKNOWN_ERROR:<br/>            exception_class = WebDriverException<br/>        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:<br/>            exception_class = UnexpectedAlertPresentException<br/>        elif status in ErrorCode.NO_ALERT_OPEN:<br/>            exception_class = NoAlertPresentException<br/>        elif status in ErrorCode.IME_NOT_AVAILABLE:<br/>            exception_class = ImeNotAvailableException<br/>        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:<br/>            exception_class = ImeActivationFailedException<br/>        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:<br/>            exception_class = MoveTargetOutOfBoundsException<br/>        elif status in ErrorCode.JAVASCRIPT_ERROR:<br/>            exception_class = JavascriptException<br/>        elif status in ErrorCode.SESSION_NOT_CREATED:<br/>            exception_class = SessionNotCreatedException<br/>        elif status in ErrorCode.INVALID_ARGUMENT:<br/>            exception_class = InvalidArgumentException<br/>        elif status in ErrorCode.NO_SUCH_COOKIE:<br/>            exception_class = NoSuchCookieException<br/>        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:<br/>            exception_class = ScreenshotException<br/>        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:<br/>            exception_class = ElementClickInterceptedException<br/>        elif status in ErrorCode.INSECURE_CERTIFICATE:<br/>            exception_class = InsecureCertificateException<br/>        elif status in ErrorCode.INVALID_COORDINATES:<br/>            exception_class = InvalidCoordinatesException<br/>        elif status in ErrorCode.INVALID_SESSION_ID:<br/>            exception_class = InvalidSessionIdException<br/>        elif status in ErrorCode.UNKNOWN_METHOD:<br/>            exception_class = UnknownMethodException<br/>        else:<br/>            exception_class = WebDriverException<br/>        if value == &#x27;&#x27; or value is None:<br/>            value = response[&#x27;value&#x27;]<br/>        if isinstance(value, basestring):<br/>            if exception_class == ErrorInResponseException:<br/>                raise exception_class(response, value)<br/>            raise exception_class(value)<br/>        if message == &quot;&quot; and &#x27;message&#x27; in value:<br/>            message = value[&#x27;message&#x27;]<br/>    <br/>        screen = None<br/>        if &#x27;screen&#x27; in value:<br/>            screen = value[&#x27;screen&#x27;]<br/>    <br/>        stacktrace = None<br/>        if &#x27;stackTrace&#x27; in value and value[&#x27;stackTrace&#x27;]:<br/>            stacktrace = []<br/>            try:<br/>                for frame in value[&#x27;stackTrace&#x27;]:<br/>                    line = self._value_or_default(frame, &#x27;lineNumber&#x27;, &#x27;&#x27;)<br/>                    file = self._value_or_default(frame, &#x27;fileName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if line:<br/>                        file = &quot;%s:%s&quot; % (file, line)<br/>                    meth = self._value_or_default(frame, &#x27;methodName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if &#x27;className&#x27; in frame:<br/>                        meth = &quot;%s.%s&quot; % (frame[&#x27;className&#x27;], meth)<br/>                    msg = &quot;    at %s (%s)&quot;<br/>                    msg = msg % (meth, file)<br/>                    stacktrace.append(msg)<br/>            except TypeError:<br/>                pass<br/>        if exception_class == ErrorInResponseException:<br/>            raise exception_class(response, message)<br/>        elif exception_class == UnexpectedAlertPresentException:<br/>            alert_text = None<br/>            if &#x27;data&#x27; in value:<br/>                alert_text = value[&#x27;data&#x27;].get(&#x27;text&#x27;)<br/>            elif &#x27;alert&#x27; in value:<br/>                alert_text = value[&#x27;alert&#x27;].get(&#x27;text&#x27;)<br/>            raise exception_class(message, screen, stacktrace, alert_text)<br/>&gt;       raise exception_class(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;a href=&quot;/JobWork/JobSearch&quot;&gt;...&lt;/a&gt; is not clickable at point (325, 131). Other element would receive the click: &lt;div class=&quot;modal-backdrop fade&quot;&gt;&lt;/div&gt;</span><br/><span class="error">E         (Session info: chrome=87.0.4280.88)</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: ElementClickInterceptedException<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:40:24-ERROR-base_page.py click_element [line:79] root-日志信息：点击操作失败：岗位搜索(&#x27;xpath&#x27;, &#x27;//a[text()=&quot;岗位搜索&quot;]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 75, in click_element
+    ele.click()
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py&quot;, line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py&quot;, line 633, in _execute
+    return self._parent.execute(command, params)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py&quot;, line 321, in execute
+    self.error_handler.check_response(response)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py&quot;, line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;a href=&quot;/JobWork/JobSearch&quot;&gt;...&lt;/a&gt; is not clickable at point (325, 131). Other element would receive the click: &lt;div class=&quot;modal-backdrop fade&quot;&gt;&lt;/div&gt;
+  (Session info: chrome=87.0.4280.88)
+
+Tue, 22 Dec 2020 09:40:25-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/岗位搜索_20201222_094024.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    root:base_page.py:79 点击操作失败：岗位搜索(&#x27;xpath&#x27;, &#x27;//a[text()=&quot;岗位搜索&quot;]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 75, in click_element
+    ele.click()
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py&quot;, line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py&quot;, line 633, in _execute
+    return self._parent.execute(command, params)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py&quot;, line 321, in execute
+    self.error_handler.check_response(response)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py&quot;, line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;a href=&quot;/JobWork/JobSearch&quot;&gt;...&lt;/a&gt; is not clickable at point (325, 131). Other element would receive the click: &lt;div class=&quot;modal-backdrop fade&quot;&gt;&lt;/div&gt;
+  (Session info: chrome=87.0.4280.88)
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/岗位搜索_20201222_094024.png<br/></div></td></tr></tbody>
+      <tbody class="rerun results-table-row">
+        <tr>
+          <td class="col-result">Rerun</td>
+          <td class="col-name">TestCases/test_canbejobfair.py::TestCanbeJobfair::test_canbejobfair_creatjob</td>
+          <td class="col-duration">18.76</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;TestCases.test_canbejobfair.TestCanbeJobfair object at 0x000002679397FB00&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;3552c04229f0fef8690c2fb6e9f72490&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x00000267938A7A90&gt;]<br/><br/>    def test_canbejobfair_creatjob(self,init_indexEnv):<br/>        # 步聚 1.企业登录页面-登录 2.企业中心页面-点击招聘会管理-网络招聘会  3.点击可入驻招聘会  4.我要入驻  5 创建新岗位提交<br/>        init_indexEnv[1].click_companylogin()<br/>        LoginPage(init_indexEnv[0]).login(login_succs[&quot;username&quot;], login_succs[&quot;passwd&quot;])<br/>        CompanyCenterPage(init_indexEnv[0]).cilick_jobfair()<br/>        MyJobFairPage(init_indexEnv[0]).click_canbejobfair()<br/>&gt;       CanbeJobFairPage(init_indexEnv[0]).click_intojobfair_creatjob(job_sucess[&quot;gwname&quot;],job_sucess[&quot;zprs&quot;],job_sucess[&quot;zplxr&quot;],job_sucess[&quot;lxrphone&quot;])<br/><br/>TestCases\test_canbejobfair.py:38: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\canbein_jobfair_page.py:31: in click_intojobfair_creatjob<br/>    self.wait_eleVisible(self.into_button, model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;3552c04229f0fef8690c2fb6e9f72490&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938A7A58&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutException<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:43:15-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:43:16-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094315.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    root:base_page.py:37 等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094315.png<br/></div></td></tr></tbody>
+      <tbody class="rerun results-table-row">
+        <tr>
+          <td class="col-result">Rerun</td>
+          <td class="col-name">TestCases/test_canbejobfair.py::TestCanbeJobfair::test_canbejobfair_creatjob</td>
+          <td class="col-duration">19.01</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;TestCases.test_canbejobfair.TestCanbeJobfair object at 0x0000026793896C18&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;ad42a983926d636100ca3935b021e6a4&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x00000267938C6CC0&gt;]<br/><br/>    def test_canbejobfair_creatjob(self,init_indexEnv):<br/>        # 步聚 1.企业登录页面-登录 2.企业中心页面-点击招聘会管理-网络招聘会  3.点击可入驻招聘会  4.我要入驻  5 创建新岗位提交<br/>        init_indexEnv[1].click_companylogin()<br/>        LoginPage(init_indexEnv[0]).login(login_succs[&quot;username&quot;], login_succs[&quot;passwd&quot;])<br/>        CompanyCenterPage(init_indexEnv[0]).cilick_jobfair()<br/>        MyJobFairPage(init_indexEnv[0]).click_canbejobfair()<br/>&gt;       CanbeJobFairPage(init_indexEnv[0]).click_intojobfair_creatjob(job_sucess[&quot;gwname&quot;],job_sucess[&quot;zprs&quot;],job_sucess[&quot;zplxr&quot;],job_sucess[&quot;lxrphone&quot;])<br/><br/>TestCases\test_canbejobfair.py:38: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\canbein_jobfair_page.py:31: in click_intojobfair_creatjob<br/>    self.wait_eleVisible(self.into_button, model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;ad42a983926d636100ca3935b021e6a4&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938C6C88&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutException<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:43:15-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:43:16-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094315.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    root:base_page.py:37 等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094315.png<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:43:55-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:43:55-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094355.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    root:base_page.py:37 等待元素可见失败：,我要入驻-创建岗位,(&#x27;xpath&#x27;, &#x27;//*[@id=&quot;jobfail&quot;]/div[2]/ul/li[1]/div[2]/a&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/我要入驻-创建岗位_20201222_094355.png<br/></div></td></tr></tbody>
+      <tbody class="rerun results-table-row">
+        <tr>
+          <td class="col-result">Rerun</td>
+          <td class="col-name">TestCases/test_company_regist.py::TestCompanyRegist::test_companyregist_sucess</td>
+          <td class="col-duration">19.60</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;TestCases.test_company_regist.TestCompanyRegist object at 0x00000267938E72B0&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;ea6ec83f48f1ed04c2334846a44b7bb9&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x00000267938E7C50&gt;]<br/><br/>    def test_companyregist_sucess(self,init_indexEnv):<br/>        # 1.首页-招聘企业注册<br/>        init_indexEnv[1].click_companyregist()<br/>        #手机号随机获取<br/>        phone = RamdonFun().create_phone()<br/>        # 2.企业注册页面-填写信息-点击下一步<br/>        CompantyRegistOnePage(init_indexEnv[0]).click_registone(companyregist_sucess[&quot;codetypeno&quot;],companyregist_sucess[&quot;companyname&quot;],companyregist_sucess[&quot;companyno&quot;],companyregist_sucess[&quot;companypwd&quot;],companyregist_sucess[&quot;companypwd2&quot;])<br/>        # 3.下一步页面-填写信息-点击注册<br/>        CompantyRegistNextPage(init_indexEnv[0]).click_registnext(companyregist_sucess[&quot;managename&quot;],companyregist_sucess[&quot;manageidcard&quot;],phone,companyregist_sucess[&quot;phonecode&quot;])<br/>        # 4.注册成功-跳转至企业中心页面<br/>&gt;       assert CompanyCenterPage(init_indexEnv[0]).get_companyname()== companyregist_sucess[&quot;check&quot;]<br/><br/>TestCases\test_company_regist.py:26: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\company_center_page.py:45: in get_companyname<br/>    self.wait_eleVisible(self.company_name,model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;ea6ec83f48f1ed04c2334846a44b7bb9&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938E7AC8&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutException<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:44:56-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：18363238733
+Tue, 22 Dec 2020 09:45:15-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:45:15-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094515.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:ramdon_fun.py:25 随机生成手机号：18363238733
+ERROR    root:base_page.py:37 等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094515.png<br/></div></td></tr></tbody>
+      <tbody class="rerun results-table-row">
+        <tr>
+          <td class="col-result">Rerun</td>
+          <td class="col-name">TestCases/test_company_regist.py::TestCompanyRegist::test_companyregist_sucess</td>
+          <td class="col-duration">24.19</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;TestCases.test_company_regist.TestCompanyRegist object at 0x000002679397FD30&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;a60d1fd834afdb8c4b126dce07724f2a&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x0000026793896898&gt;]<br/><br/>    def test_companyregist_sucess(self,init_indexEnv):<br/>        # 1.首页-招聘企业注册<br/>        init_indexEnv[1].click_companyregist()<br/>        #手机号随机获取<br/>        phone = RamdonFun().create_phone()<br/>        # 2.企业注册页面-填写信息-点击下一步<br/>        CompantyRegistOnePage(init_indexEnv[0]).click_registone(companyregist_sucess[&quot;codetypeno&quot;],companyregist_sucess[&quot;companyname&quot;],companyregist_sucess[&quot;companyno&quot;],companyregist_sucess[&quot;companypwd&quot;],companyregist_sucess[&quot;companypwd2&quot;])<br/>        # 3.下一步页面-填写信息-点击注册<br/>        CompantyRegistNextPage(init_indexEnv[0]).click_registnext(companyregist_sucess[&quot;managename&quot;],companyregist_sucess[&quot;manageidcard&quot;],phone,companyregist_sucess[&quot;phonecode&quot;])<br/>        # 4.注册成功-跳转至企业中心页面<br/>&gt;       assert CompanyCenterPage(init_indexEnv[0]).get_companyname()== companyregist_sucess[&quot;check&quot;]<br/><br/>TestCases\test_company_regist.py:26: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\company_center_page.py:45: in get_companyname<br/>    self.wait_eleVisible(self.company_name,model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;a60d1fd834afdb8c4b126dce07724f2a&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938964A8&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutException<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:44:56-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：18363238733
+Tue, 22 Dec 2020 09:45:15-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:45:15-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094515.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:ramdon_fun.py:25 随机生成手机号：18363238733
+ERROR    root:base_page.py:37 等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094515.png<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:45:38-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：18366062020
+Tue, 22 Dec 2020 09:45:58-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:45:58-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094558.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:ramdon_fun.py:25 随机生成手机号：18366062020
+ERROR    root:base_page.py:37 等待元素可见失败：,获取企业名称,(&#x27;xpath&#x27;, &#x27;//i[@class=&quot;fa fa-user&quot;]/following::span[1]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201222_094558.png<br/></div></td></tr></tbody>
+      <tbody class="rerun results-table-row">
+        <tr>
+          <td class="col-result">Rerun</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_login_failed_noUser[data1]::setup</td>
+          <td class="col-duration">64.18</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">@pytest.fixture()<br/>    def init_indexEnv():<br/>        #前置<br/>&gt;       driver = webdriver.Chrome(chrom_path)<br/><br/>TestCases\conftest.py:15: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>..\..\lib\site-packages\selenium\webdriver\chrome\webdriver.py:81: in __init__<br/>    desired_capabilities=desired_capabilities)<br/>..\..\lib\site-packages\selenium\webdriver\remote\webdriver.py:157: in __init__<br/>    self.start_session(capabilities, browser_profile)<br/>..\..\lib\site-packages\selenium\webdriver\remote\webdriver.py:252: in start_session<br/>    response = self.execute(Command.NEW_SESSION, parameters)<br/>..\..\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute<br/>    self.error_handler.check_response(response)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x00000267938E1A58&gt;<br/>response = {&#x27;status&#x27;: 500, &#x27;value&#x27;: &#x27;{&quot;value&quot;:{&quot;error&quot;:&quot;chrome not reachable&quot;,&quot;message&quot;:&quot;chrome not reachable&quot;,&quot;stacktrace&quot;:&quot;Back...\n\\tRtlGetAppContainerNamedObjectPath [0x77C466DD+237]\\n\\tRtlGetAppContainerNamedObjectPath [0x77C466AD+189]\\n&quot;}}&#x27;}<br/><br/>    def check_response(self, response):<br/>        &quot;&quot;&quot;<br/>        Checks that a JSON response from the WebDriver does not have an error.<br/>    <br/>        :Args:<br/>         - response - The JSON response from the WebDriver server as a dictionary<br/>           object.<br/>    <br/>        :Raises: If the response contains an error message.<br/>        &quot;&quot;&quot;<br/>        status = response.get(&#x27;status&#x27;, None)<br/>        if status is None or status == ErrorCode.SUCCESS:<br/>            return<br/>        value = None<br/>        message = response.get(&quot;message&quot;, &quot;&quot;)<br/>        screen = response.get(&quot;screen&quot;, &quot;&quot;)<br/>        stacktrace = None<br/>        if isinstance(status, int):<br/>            value_json = response.get(&#x27;value&#x27;, None)<br/>            if value_json and isinstance(value_json, basestring):<br/>                import json<br/>                try:<br/>                    value = json.loads(value_json)<br/>                    if len(value.keys()) == 1:<br/>                        value = value[&#x27;value&#x27;]<br/>                    status = value.get(&#x27;error&#x27;, None)<br/>                    if status is None:<br/>                        status = value[&quot;status&quot;]<br/>                        message = value[&quot;value&quot;]<br/>                        if not isinstance(message, basestring):<br/>                            value = message<br/>                            message = message.get(&#x27;message&#x27;)<br/>                    else:<br/>                        message = value.get(&#x27;message&#x27;, None)<br/>                except ValueError:<br/>                    pass<br/>    <br/>        exception_class = ErrorInResponseException<br/>        if status in ErrorCode.NO_SUCH_ELEMENT:<br/>            exception_class = NoSuchElementException<br/>        elif status in ErrorCode.NO_SUCH_FRAME:<br/>            exception_class = NoSuchFrameException<br/>        elif status in ErrorCode.NO_SUCH_WINDOW:<br/>            exception_class = NoSuchWindowException<br/>        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:<br/>            exception_class = StaleElementReferenceException<br/>        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:<br/>            exception_class = ElementNotVisibleException<br/>        elif status in ErrorCode.INVALID_ELEMENT_STATE:<br/>            exception_class = InvalidElementStateException<br/>        elif status in ErrorCode.INVALID_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:<br/>            exception_class = InvalidSelectorException<br/>        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:<br/>            exception_class = ElementNotSelectableException<br/>        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:<br/>            exception_class = ElementNotInteractableException<br/>        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:<br/>            exception_class = InvalidCookieDomainException<br/>        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:<br/>            exception_class = UnableToSetCookieException<br/>        elif status in ErrorCode.TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.SCRIPT_TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.UNKNOWN_ERROR:<br/>            exception_class = WebDriverException<br/>        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:<br/>            exception_class = UnexpectedAlertPresentException<br/>        elif status in ErrorCode.NO_ALERT_OPEN:<br/>            exception_class = NoAlertPresentException<br/>        elif status in ErrorCode.IME_NOT_AVAILABLE:<br/>            exception_class = ImeNotAvailableException<br/>        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:<br/>            exception_class = ImeActivationFailedException<br/>        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:<br/>            exception_class = MoveTargetOutOfBoundsException<br/>        elif status in ErrorCode.JAVASCRIPT_ERROR:<br/>            exception_class = JavascriptException<br/>        elif status in ErrorCode.SESSION_NOT_CREATED:<br/>            exception_class = SessionNotCreatedException<br/>        elif status in ErrorCode.INVALID_ARGUMENT:<br/>            exception_class = InvalidArgumentException<br/>        elif status in ErrorCode.NO_SUCH_COOKIE:<br/>            exception_class = NoSuchCookieException<br/>        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:<br/>            exception_class = ScreenshotException<br/>        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:<br/>            exception_class = ElementClickInterceptedException<br/>        elif status in ErrorCode.INSECURE_CERTIFICATE:<br/>            exception_class = InsecureCertificateException<br/>        elif status in ErrorCode.INVALID_COORDINATES:<br/>            exception_class = InvalidCoordinatesException<br/>        elif status in ErrorCode.INVALID_SESSION_ID:<br/>            exception_class = InvalidSessionIdException<br/>        elif status in ErrorCode.UNKNOWN_METHOD:<br/>            exception_class = UnknownMethodException<br/>        else:<br/>            exception_class = WebDriverException<br/>        if value == &#x27;&#x27; or value is None:<br/>            value = response[&#x27;value&#x27;]<br/>        if isinstance(value, basestring):<br/>            if exception_class == ErrorInResponseException:<br/>                raise exception_class(response, value)<br/>            raise exception_class(value)<br/>        if message == &quot;&quot; and &#x27;message&#x27; in value:<br/>            message = value[&#x27;message&#x27;]<br/>    <br/>        screen = None<br/>        if &#x27;screen&#x27; in value:<br/>            screen = value[&#x27;screen&#x27;]<br/>    <br/>        stacktrace = None<br/>        if &#x27;stackTrace&#x27; in value and value[&#x27;stackTrace&#x27;]:<br/>            stacktrace = []<br/>            try:<br/>                for frame in value[&#x27;stackTrace&#x27;]:<br/>                    line = self._value_or_default(frame, &#x27;lineNumber&#x27;, &#x27;&#x27;)<br/>                    file = self._value_or_default(frame, &#x27;fileName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if line:<br/>                        file = &quot;%s:%s&quot; % (file, line)<br/>                    meth = self._value_or_default(frame, &#x27;methodName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if &#x27;className&#x27; in frame:<br/>                        meth = &quot;%s.%s&quot; % (frame[&#x27;className&#x27;], meth)<br/>                    msg = &quot;    at %s (%s)&quot;<br/>                    msg = msg % (meth, file)<br/>                    stacktrace.append(msg)<br/>            except TypeError:<br/>                pass<br/>        if exception_class == ErrorInResponseException:<br/>            raise exception_class(response, message)<br/>        elif exception_class == UnexpectedAlertPresentException:<br/>            alert_text = None<br/>            if &#x27;data&#x27; in value:<br/>                alert_text = value[&#x27;data&#x27;].get(&#x27;text&#x27;)<br/>            elif &#x27;alert&#x27; in value:<br/>                alert_text = value[&#x27;alert&#x27;].get(&#x27;text&#x27;)<br/>            raise exception_class(message, screen, stacktrace, alert_text)<br/>&gt;       raise exception_class(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.WebDriverException: Message: chrome not reachable</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: WebDriverException<br/></div></td></tr></tbody>
+      <tbody class="rerun results-table-row">
+        <tr>
+          <td class="col-result">Rerun</td>
+          <td class="col-name">TestCases/test_person_createresume.py::TestPersonCreateresum::test_projectexprience</td>
+          <td class="col-duration">17.23</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;TestCases.test_person_createresume.TestPersonCreateresum object at 0x0000026792EEE2E8&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;cde7d5965c708bf7878b4940bf72b215&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x00000267938D6198&gt;]<br/><br/>    @pytest.mark.project<br/>    def test_projectexprience(self,init_indexEnv):<br/>        # 1.首页-个人登录<br/>        IndexPage(init_indexEnv[0]).click_personlogin()<br/>        # 2.登录页面-输入账户密码-登录成功<br/>        PersonLoginPage(init_indexEnv[0]).person_login(person_login_succs[&quot;username&quot;], person_login_succs[&quot;passwd&quot;])<br/>        # 3.个人中心页面-点击菜单-简历管理<br/>&gt;       PersonCenterPage(init_indexEnv[0]).click_resumemanage()<br/><br/>TestCases\test_person_createresume.py:79: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\person_center_page.py:31: in click_resumemanage<br/>    self.wait_eleVisible(self.resume_menu,model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;cde7d5965c708bf7878b4940bf72b215&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938D6860&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutException<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:50:40-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,个人中心页面-点击简历管理,(&#x27;xpath&#x27;, &#x27;//a[text()=&quot;简历管理&quot;]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:50:40-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/个人中心页面-点击简历管理_20201222_095040.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    root:base_page.py:37 等待元素可见失败：,个人中心页面-点击简历管理,(&#x27;xpath&#x27;, &#x27;//a[text()=&quot;简历管理&quot;]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/个人中心页面-点击简历管理_20201222_095040.png<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_apply_job.py::TestApplyJob::test_applyjob_success</td>
+          <td class="col-duration">59.02</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;TestCases.test_apply_job.TestApplyJob object at 0x0000026792F02320&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;f63da26dc470b4613518e644cb50663e&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x0000026792F4E550&gt;]<br/><br/>    @pytest.mark.applyjob1<br/>    def test_applyjob_success(self,init_indexEnv):<br/>        # 1.首页-个人登录<br/>        IndexPage(init_indexEnv[0]).click_personlogin()<br/>        # 2.登录页面-输入账号密码-登录成功<br/>        PersonLoginPage(init_indexEnv[0]).person_login(person_login_succs[&quot;username&quot;],person_login_succs[&quot;passwd&quot;])<br/>        # 3.个人中心页面-点击菜单-岗位搜索<br/>&gt;       PersonCenterPage(init_indexEnv[0]).click_jobsearch()<br/><br/>TestCases\test_apply_job.py:26: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\person_center_page.py:38: in click_jobsearch<br/>    self.click_element(self.jobsearch_menu,model=name)<br/>Common\base_page.py:75: in click_element<br/>    ele.click()<br/>..\..\lib\site-packages\selenium\webdriver\remote\webelement.py:80: in click<br/>    self._execute(Command.CLICK_ELEMENT)<br/>..\..\lib\site-packages\selenium\webdriver\remote\webelement.py:633: in _execute<br/>    return self._parent.execute(command, params)<br/>..\..\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute<br/>    self.error_handler.check_response(response)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x0000026792F184A8&gt;<br/>response = {&#x27;status&#x27;: 400, &#x27;value&#x27;: &#x27;{&quot;value&quot;:{&quot;error&quot;:&quot;element click intercepted&quot;,&quot;message&quot;:&quot;element click intercepted: Element ...\n\\tRtlGetAppContainerNamedObjectPath [0x77C466DD+237]\\n\\tRtlGetAppContainerNamedObjectPath [0x77C466AD+189]\\n&quot;}}&#x27;}<br/><br/>    def check_response(self, response):<br/>        &quot;&quot;&quot;<br/>        Checks that a JSON response from the WebDriver does not have an error.<br/>    <br/>        :Args:<br/>         - response - The JSON response from the WebDriver server as a dictionary<br/>           object.<br/>    <br/>        :Raises: If the response contains an error message.<br/>        &quot;&quot;&quot;<br/>        status = response.get(&#x27;status&#x27;, None)<br/>        if status is None or status == ErrorCode.SUCCESS:<br/>            return<br/>        value = None<br/>        message = response.get(&quot;message&quot;, &quot;&quot;)<br/>        screen = response.get(&quot;screen&quot;, &quot;&quot;)<br/>        stacktrace = None<br/>        if isinstance(status, int):<br/>            value_json = response.get(&#x27;value&#x27;, None)<br/>            if value_json and isinstance(value_json, basestring):<br/>                import json<br/>                try:<br/>                    value = json.loads(value_json)<br/>                    if len(value.keys()) == 1:<br/>                        value = value[&#x27;value&#x27;]<br/>                    status = value.get(&#x27;error&#x27;, None)<br/>                    if status is None:<br/>                        status = value[&quot;status&quot;]<br/>                        message = value[&quot;value&quot;]<br/>                        if not isinstance(message, basestring):<br/>                            value = message<br/>                            message = message.get(&#x27;message&#x27;)<br/>                    else:<br/>                        message = value.get(&#x27;message&#x27;, None)<br/>                except ValueError:<br/>                    pass<br/>    <br/>        exception_class = ErrorInResponseException<br/>        if status in ErrorCode.NO_SUCH_ELEMENT:<br/>            exception_class = NoSuchElementException<br/>        elif status in ErrorCode.NO_SUCH_FRAME:<br/>            exception_class = NoSuchFrameException<br/>        elif status in ErrorCode.NO_SUCH_WINDOW:<br/>            exception_class = NoSuchWindowException<br/>        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:<br/>            exception_class = StaleElementReferenceException<br/>        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:<br/>            exception_class = ElementNotVisibleException<br/>        elif status in ErrorCode.INVALID_ELEMENT_STATE:<br/>            exception_class = InvalidElementStateException<br/>        elif status in ErrorCode.INVALID_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:<br/>            exception_class = InvalidSelectorException<br/>        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:<br/>            exception_class = ElementNotSelectableException<br/>        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:<br/>            exception_class = ElementNotInteractableException<br/>        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:<br/>            exception_class = InvalidCookieDomainException<br/>        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:<br/>            exception_class = UnableToSetCookieException<br/>        elif status in ErrorCode.TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.SCRIPT_TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.UNKNOWN_ERROR:<br/>            exception_class = WebDriverException<br/>        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:<br/>            exception_class = UnexpectedAlertPresentException<br/>        elif status in ErrorCode.NO_ALERT_OPEN:<br/>            exception_class = NoAlertPresentException<br/>        elif status in ErrorCode.IME_NOT_AVAILABLE:<br/>            exception_class = ImeNotAvailableException<br/>        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:<br/>            exception_class = ImeActivationFailedException<br/>        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:<br/>            exception_class = MoveTargetOutOfBoundsException<br/>        elif status in ErrorCode.JAVASCRIPT_ERROR:<br/>            exception_class = JavascriptException<br/>        elif status in ErrorCode.SESSION_NOT_CREATED:<br/>            exception_class = SessionNotCreatedException<br/>        elif status in ErrorCode.INVALID_ARGUMENT:<br/>            exception_class = InvalidArgumentException<br/>        elif status in ErrorCode.NO_SUCH_COOKIE:<br/>            exception_class = NoSuchCookieException<br/>        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:<br/>            exception_class = ScreenshotException<br/>        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:<br/>            exception_class = ElementClickInterceptedException<br/>        elif status in ErrorCode.INSECURE_CERTIFICATE:<br/>            exception_class = InsecureCertificateException<br/>        elif status in ErrorCode.INVALID_COORDINATES:<br/>            exception_class = InvalidCoordinatesException<br/>        elif status in ErrorCode.INVALID_SESSION_ID:<br/>            exception_class = InvalidSessionIdException<br/>        elif status in ErrorCode.UNKNOWN_METHOD:<br/>            exception_class = UnknownMethodException<br/>        else:<br/>            exception_class = WebDriverException<br/>        if value == &#x27;&#x27; or value is None:<br/>            value = response[&#x27;value&#x27;]<br/>        if isinstance(value, basestring):<br/>            if exception_class == ErrorInResponseException:<br/>                raise exception_class(response, value)<br/>            raise exception_class(value)<br/>        if message == &quot;&quot; and &#x27;message&#x27; in value:<br/>            message = value[&#x27;message&#x27;]<br/>    <br/>        screen = None<br/>        if &#x27;screen&#x27; in value:<br/>            screen = value[&#x27;screen&#x27;]<br/>    <br/>        stacktrace = None<br/>        if &#x27;stackTrace&#x27; in value and value[&#x27;stackTrace&#x27;]:<br/>            stacktrace = []<br/>            try:<br/>                for frame in value[&#x27;stackTrace&#x27;]:<br/>                    line = self._value_or_default(frame, &#x27;lineNumber&#x27;, &#x27;&#x27;)<br/>                    file = self._value_or_default(frame, &#x27;fileName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if line:<br/>                        file = &quot;%s:%s&quot; % (file, line)<br/>                    meth = self._value_or_default(frame, &#x27;methodName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if &#x27;className&#x27; in frame:<br/>                        meth = &quot;%s.%s&quot; % (frame[&#x27;className&#x27;], meth)<br/>                    msg = &quot;    at %s (%s)&quot;<br/>                    msg = msg % (meth, file)<br/>                    stacktrace.append(msg)<br/>            except TypeError:<br/>                pass<br/>        if exception_class == ErrorInResponseException:<br/>            raise exception_class(response, message)<br/>        elif exception_class == UnexpectedAlertPresentException:<br/>            alert_text = None<br/>            if &#x27;data&#x27; in value:<br/>                alert_text = value[&#x27;data&#x27;].get(&#x27;text&#x27;)<br/>            elif &#x27;alert&#x27; in value:<br/>                alert_text = value[&#x27;alert&#x27;].get(&#x27;text&#x27;)<br/>            raise exception_class(message, screen, stacktrace, alert_text)<br/>&gt;       raise exception_class(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;a href=&quot;/JobWork/JobSearch&quot;&gt;...&lt;/a&gt; is not clickable at point (325, 131). Other element would receive the click: &lt;div class=&quot;modal-backdrop fade&quot;&gt;&lt;/div&gt;</span><br/><span class="error">E         (Session info: chrome=87.0.4280.88)</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: ElementClickInterceptedException<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:40:24-ERROR-base_page.py click_element [line:79] root-日志信息：点击操作失败：岗位搜索(&#x27;xpath&#x27;, &#x27;//a[text()=&quot;岗位搜索&quot;]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 75, in click_element
+    ele.click()
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py&quot;, line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py&quot;, line 633, in _execute
+    return self._parent.execute(command, params)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py&quot;, line 321, in execute
+    self.error_handler.check_response(response)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py&quot;, line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;a href=&quot;/JobWork/JobSearch&quot;&gt;...&lt;/a&gt; is not clickable at point (325, 131). Other element would receive the click: &lt;div class=&quot;modal-backdrop fade&quot;&gt;&lt;/div&gt;
+  (Session info: chrome=87.0.4280.88)
+
+Tue, 22 Dec 2020 09:40:25-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/岗位搜索_20201222_094024.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    root:base_page.py:79 点击操作失败：岗位搜索(&#x27;xpath&#x27;, &#x27;//a[text()=&quot;岗位搜索&quot;]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 75, in click_element
+    ele.click()
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py&quot;, line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py&quot;, line 633, in _execute
+    return self._parent.execute(command, params)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py&quot;, line 321, in execute
+    self.error_handler.check_response(response)
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py&quot;, line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element &lt;a href=&quot;/JobWork/JobSearch&quot;&gt;...&lt;/a&gt; is not clickable at point (325, 131). Other element would receive the click: &lt;div class=&quot;modal-backdrop fade&quot;&gt;&lt;/div&gt;
+  (Session info: chrome=87.0.4280.88)
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/岗位搜索_20201222_094024.png<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_apply_job.py::TestApplyJob::test_collectjob_succes</td>
+          <td class="col-duration">20.21</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:41:20-INFO-base_page.py get_window_handel [line:118] root-日志信息：所有句丙[&#x27;CDwindow-012C736C110ED4E95EC2D7AD02FF84C0&#x27;, &#x27;CDwindow-A499DA4F363A641A8E605949DC6DA3D0&#x27;]
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:base_page.py:118 所有句丙[&#x27;CDwindow-012C736C110ED4E95EC2D7AD02FF84C0&#x27;, &#x27;CDwindow-A499DA4F363A641A8E605949DC6DA3D0&#x27;]<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_canbeO2Ojobfair.py::TestCanbeJobfair::test_canbejobfair</td>
+          <td class="col-duration">27.79</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_canbeO2Ojobfair.py::TestCanbeJobfair::test_canbejobfair_creatjob</td>
+          <td class="col-duration">28.55</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_canbejobfair.py::TestCanbeJobfair::test_canbejobfair</td>
+          <td class="col-duration">24.78</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_create_job.py::TestCanbeJobfair::test_canbejobfair</td>
+          <td class="col-duration">22.85</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_login_success</td>
+          <td class="col-duration">16.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_login_failed_noUser[data0]</td>
+          <td class="col-duration">16.11</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_login.py::TestLogin::test_login_failed_noUser[data1]</td>
+          <td class="col-duration">80.52</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">@pytest.fixture()<br/>    def init_indexEnv():<br/>        #前置<br/>&gt;       driver = webdriver.Chrome(chrom_path)<br/><br/>TestCases\conftest.py:15: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>..\..\lib\site-packages\selenium\webdriver\chrome\webdriver.py:81: in __init__<br/>    desired_capabilities=desired_capabilities)<br/>..\..\lib\site-packages\selenium\webdriver\remote\webdriver.py:157: in __init__<br/>    self.start_session(capabilities, browser_profile)<br/>..\..\lib\site-packages\selenium\webdriver\remote\webdriver.py:252: in start_session<br/>    response = self.execute(Command.NEW_SESSION, parameters)<br/>..\..\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute<br/>    self.error_handler.check_response(response)<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x00000267938E1A58&gt;<br/>response = {&#x27;status&#x27;: 500, &#x27;value&#x27;: &#x27;{&quot;value&quot;:{&quot;error&quot;:&quot;chrome not reachable&quot;,&quot;message&quot;:&quot;chrome not reachable&quot;,&quot;stacktrace&quot;:&quot;Back...\n\\tRtlGetAppContainerNamedObjectPath [0x77C466DD+237]\\n\\tRtlGetAppContainerNamedObjectPath [0x77C466AD+189]\\n&quot;}}&#x27;}<br/><br/>    def check_response(self, response):<br/>        &quot;&quot;&quot;<br/>        Checks that a JSON response from the WebDriver does not have an error.<br/>    <br/>        :Args:<br/>         - response - The JSON response from the WebDriver server as a dictionary<br/>           object.<br/>    <br/>        :Raises: If the response contains an error message.<br/>        &quot;&quot;&quot;<br/>        status = response.get(&#x27;status&#x27;, None)<br/>        if status is None or status == ErrorCode.SUCCESS:<br/>            return<br/>        value = None<br/>        message = response.get(&quot;message&quot;, &quot;&quot;)<br/>        screen = response.get(&quot;screen&quot;, &quot;&quot;)<br/>        stacktrace = None<br/>        if isinstance(status, int):<br/>            value_json = response.get(&#x27;value&#x27;, None)<br/>            if value_json and isinstance(value_json, basestring):<br/>                import json<br/>                try:<br/>                    value = json.loads(value_json)<br/>                    if len(value.keys()) == 1:<br/>                        value = value[&#x27;value&#x27;]<br/>                    status = value.get(&#x27;error&#x27;, None)<br/>                    if status is None:<br/>                        status = value[&quot;status&quot;]<br/>                        message = value[&quot;value&quot;]<br/>                        if not isinstance(message, basestring):<br/>                            value = message<br/>                            message = message.get(&#x27;message&#x27;)<br/>                    else:<br/>                        message = value.get(&#x27;message&#x27;, None)<br/>                except ValueError:<br/>                    pass<br/>    <br/>        exception_class = ErrorInResponseException<br/>        if status in ErrorCode.NO_SUCH_ELEMENT:<br/>            exception_class = NoSuchElementException<br/>        elif status in ErrorCode.NO_SUCH_FRAME:<br/>            exception_class = NoSuchFrameException<br/>        elif status in ErrorCode.NO_SUCH_WINDOW:<br/>            exception_class = NoSuchWindowException<br/>        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:<br/>            exception_class = StaleElementReferenceException<br/>        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:<br/>            exception_class = ElementNotVisibleException<br/>        elif status in ErrorCode.INVALID_ELEMENT_STATE:<br/>            exception_class = InvalidElementStateException<br/>        elif status in ErrorCode.INVALID_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR \<br/>                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:<br/>            exception_class = InvalidSelectorException<br/>        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:<br/>            exception_class = ElementNotSelectableException<br/>        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:<br/>            exception_class = ElementNotInteractableException<br/>        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:<br/>            exception_class = InvalidCookieDomainException<br/>        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:<br/>            exception_class = UnableToSetCookieException<br/>        elif status in ErrorCode.TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.SCRIPT_TIMEOUT:<br/>            exception_class = TimeoutException<br/>        elif status in ErrorCode.UNKNOWN_ERROR:<br/>            exception_class = WebDriverException<br/>        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:<br/>            exception_class = UnexpectedAlertPresentException<br/>        elif status in ErrorCode.NO_ALERT_OPEN:<br/>            exception_class = NoAlertPresentException<br/>        elif status in ErrorCode.IME_NOT_AVAILABLE:<br/>            exception_class = ImeNotAvailableException<br/>        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:<br/>            exception_class = ImeActivationFailedException<br/>        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:<br/>            exception_class = MoveTargetOutOfBoundsException<br/>        elif status in ErrorCode.JAVASCRIPT_ERROR:<br/>            exception_class = JavascriptException<br/>        elif status in ErrorCode.SESSION_NOT_CREATED:<br/>            exception_class = SessionNotCreatedException<br/>        elif status in ErrorCode.INVALID_ARGUMENT:<br/>            exception_class = InvalidArgumentException<br/>        elif status in ErrorCode.NO_SUCH_COOKIE:<br/>            exception_class = NoSuchCookieException<br/>        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:<br/>            exception_class = ScreenshotException<br/>        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:<br/>            exception_class = ElementClickInterceptedException<br/>        elif status in ErrorCode.INSECURE_CERTIFICATE:<br/>            exception_class = InsecureCertificateException<br/>        elif status in ErrorCode.INVALID_COORDINATES:<br/>            exception_class = InvalidCoordinatesException<br/>        elif status in ErrorCode.INVALID_SESSION_ID:<br/>            exception_class = InvalidSessionIdException<br/>        elif status in ErrorCode.UNKNOWN_METHOD:<br/>            exception_class = UnknownMethodException<br/>        else:<br/>            exception_class = WebDriverException<br/>        if value == &#x27;&#x27; or value is None:<br/>            value = response[&#x27;value&#x27;]<br/>        if isinstance(value, basestring):<br/>            if exception_class == ErrorInResponseException:<br/>                raise exception_class(response, value)<br/>            raise exception_class(value)<br/>        if message == &quot;&quot; and &#x27;message&#x27; in value:<br/>            message = value[&#x27;message&#x27;]<br/>    <br/>        screen = None<br/>        if &#x27;screen&#x27; in value:<br/>            screen = value[&#x27;screen&#x27;]<br/>    <br/>        stacktrace = None<br/>        if &#x27;stackTrace&#x27; in value and value[&#x27;stackTrace&#x27;]:<br/>            stacktrace = []<br/>            try:<br/>                for frame in value[&#x27;stackTrace&#x27;]:<br/>                    line = self._value_or_default(frame, &#x27;lineNumber&#x27;, &#x27;&#x27;)<br/>                    file = self._value_or_default(frame, &#x27;fileName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if line:<br/>                        file = &quot;%s:%s&quot; % (file, line)<br/>                    meth = self._value_or_default(frame, &#x27;methodName&#x27;, &#x27;&lt;anonymous&gt;&#x27;)<br/>                    if &#x27;className&#x27; in frame:<br/>                        meth = &quot;%s.%s&quot; % (frame[&#x27;className&#x27;], meth)<br/>                    msg = &quot;    at %s (%s)&quot;<br/>                    msg = msg % (meth, file)<br/>                    stacktrace.append(msg)<br/>            except TypeError:<br/>                pass<br/>        if exception_class == ErrorInResponseException:<br/>            raise exception_class(response, message)<br/>        elif exception_class == UnexpectedAlertPresentException:<br/>            alert_text = None<br/>            if &#x27;data&#x27; in value:<br/>                alert_text = value[&#x27;data&#x27;].get(&#x27;text&#x27;)<br/>            elif &#x27;alert&#x27; in value:<br/>                alert_text = value[&#x27;alert&#x27;].get(&#x27;text&#x27;)<br/>            raise exception_class(message, screen, stacktrace, alert_text)<br/>&gt;       raise exception_class(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.WebDriverException: Message: chrome not reachable</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: WebDriverException<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_person_createresume.py::TestPersonCreateresum::test_jobintention_success</td>
+          <td class="col-duration">20.70</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_person_createresume.py::TestPersonCreateresum::test_deljobintention</td>
+          <td class="col-duration">18.51</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_person_createresume.py::TestPersonCreateresum::test_workexprience_success</td>
+          <td class="col-duration">24.48</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_person_createresume.py::TestPersonCreateresum::test_projectexprience</td>
+          <td class="col-duration">60.94</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;TestCases.test_person_createresume.TestPersonCreateresum object at 0x0000026792EEE2E8&gt;<br/>init_indexEnv = [&lt;selenium.webdriver.chrome.webdriver.WebDriver (session=&quot;cde7d5965c708bf7878b4940bf72b215&quot;)&gt;, &lt;PageObjects.index_page.IndexPage object at 0x00000267938D6198&gt;]<br/><br/>    @pytest.mark.project<br/>    def test_projectexprience(self,init_indexEnv):<br/>        # 1.首页-个人登录<br/>        IndexPage(init_indexEnv[0]).click_personlogin()<br/>        # 2.登录页面-输入账户密码-登录成功<br/>        PersonLoginPage(init_indexEnv[0]).person_login(person_login_succs[&quot;username&quot;], person_login_succs[&quot;passwd&quot;])<br/>        # 3.个人中心页面-点击菜单-简历管理<br/>&gt;       PersonCenterPage(init_indexEnv[0]).click_resumemanage()<br/><br/>TestCases\test_person_createresume.py:79: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>PageObjects\person_center_page.py:31: in click_resumemanage<br/>    self.wait_eleVisible(self.resume_menu,model=name)<br/>Common\base_page.py:29: in wait_eleVisible<br/>    EC.visibility_of_element_located(locator))<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;selenium.webdriver.support.wait.WebDriverWait (session=&quot;cde7d5965c708bf7878b4940bf72b215&quot;)&gt;<br/>method = &lt;selenium.webdriver.support.expected_conditions.visibility_of_element_located object at 0x00000267938D6860&gt;<br/>message = &#x27;&#x27;<br/><br/>    def until(self, method, message=&#x27;&#x27;):<br/>        &quot;&quot;&quot;Calls the method provided with the driver as an argument until the \<br/>        return value is not False.&quot;&quot;&quot;<br/>        screen = None<br/>        stacktrace = None<br/>    <br/>        end_time = time.time() + self._timeout<br/>        while True:<br/>            try:<br/>                value = method(self._driver)<br/>                if value:<br/>                    return value<br/>            except self._ignored_exceptions as exc:<br/>                screen = getattr(exc, &#x27;screen&#x27;, None)<br/>                stacktrace = getattr(exc, &#x27;stacktrace&#x27;, None)<br/>            time.sleep(self._poll)<br/>            if time.time() &gt; end_time:<br/>                break<br/>&gt;       raise TimeoutException(message, screen, stacktrace)<br/><span class="error">E       selenium.common.exceptions.TimeoutException: Message:</span><br/><br/>..\..\lib\site-packages\selenium\webdriver\support\wait.py:80: TimeoutException<br/> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:50:40-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,个人中心页面-点击简历管理,(&#x27;xpath&#x27;, &#x27;//a[text()=&quot;简历管理&quot;]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Tue, 22 Dec 2020 09:50:40-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/个人中心页面-点击简历管理_20201222_095040.png
+<br/> -------------------------------Captured log call-------------------------------- <br/>ERROR    root:base_page.py:37 等待元素可见失败：,个人中心页面-点击简历管理,(&#x27;xpath&#x27;, &#x27;//a[text()=&quot;简历管理&quot;]&#x27;)
+Traceback (most recent call last):
+  File &quot;D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py&quot;, line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File &quot;D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py&quot;, line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+INFO     root:base_page.py:107 截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/个人中心页面-点击简历管理_20201222_095040.png<br/> ------------------------------Captured stdout call------------------------------ <br/>进入添加项目经历
+<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_person_createresume.py::TestPersonCreateresum::test_delworkexprience</td>
+          <td class="col-duration">26.29</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_person_login.py::TestPersonLogin::test_personglogin_sucess</td>
+          <td class="col-duration">20.82</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:51:58-INFO-person_center_page.py get_countname [line:16] root-日志信息：陈功华
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:person_center_page.py:16 陈功华<br/></div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">TestCases/test_person_regist.py::TestPersonRegist::test_personregist_sucess</td>
+          <td class="col-duration">27.89</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log"> ------------------------------Captured stderr call------------------------------ <br/>Tue, 22 Dec 2020 09:52:17-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：15573643538
+<br/> -------------------------------Captured log call-------------------------------- <br/>INFO     root:ramdon_fun.py:25 随机生成手机号：15573643538<br/></div></td></tr></tbody></table></body></html>

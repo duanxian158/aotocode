@@ -1,0 +1,19 @@
+1\
+100个用例：30个用例前置条件和后置
+40前置和后置
+小简
+30前置和后置
+小简
+3个前置和后置
+
+fixture:
+conftest.py == pytest自动识别的文件。名字不可以更改。存放fixtures。可以放个
+一个fixture表示  一个前置和后置
+可以放多个
+实现fixtures：
+装饰器+函数实现
+@pytest.fixture
+yield 前置和后置和分界线
+yield 返回值
+调用的时候：测试用例/测试类的前面
+@pytest.mark.usefixtures("fixture函数名称")

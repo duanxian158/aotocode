@@ -1,0 +1,87 @@
+Mon, 21 Dec 2020 10:04:26-INFO-logger.py <module> [line:21] root-日志信息：hehehe
+Mon, 21 Dec 2020 10:04:58-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,岗位搜索,('xpath', '//a[text()="岗位搜索"]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Mon, 21 Dec 2020 10:04:59-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/岗位搜索_20201221_100458.png
+Mon, 21 Dec 2020 10:06:13-INFO-base_page.py get_window_handel [line:118] root-日志信息：所有句丙['CDwindow-55C69355257B7BA1907D1A95CFF0E897', 'CDwindow-ED59946C8FB6DD862E88F27E2F463BF7']
+Mon, 21 Dec 2020 10:08:31-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：14732915384
+Mon, 21 Dec 2020 10:08:49-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取企业名称,('xpath', '//i[@class="fa fa-user"]/following::span[1]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Mon, 21 Dec 2020 10:08:49-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201221_100849.png
+Mon, 21 Dec 2020 10:09:10-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：13448223622
+Mon, 21 Dec 2020 10:09:28-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取企业名称,('xpath', '//i[@class="fa fa-user"]/following::span[1]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Mon, 21 Dec 2020 10:09:28-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201221_100928.png
+Mon, 21 Dec 2020 10:09:49-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：15941190466
+Mon, 21 Dec 2020 10:10:07-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取企业名称,('xpath', '//i[@class="fa fa-user"]/following::span[1]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Mon, 21 Dec 2020 10:10:08-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取企业名称_20201221_101007.png
+Mon, 21 Dec 2020 10:11:06-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,点击岗位管理,('xpath', '//a[text()="岗位管理"]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Mon, 21 Dec 2020 10:11:06-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/点击岗位管理_20201221_101106.png
+Mon, 21 Dec 2020 10:11:43-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,点击岗位管理,('xpath', '//a[text()="岗位管理"]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Mon, 21 Dec 2020 10:11:43-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/点击岗位管理_20201221_101143.png
+Mon, 21 Dec 2020 10:14:09-ERROR-base_page.py click_element [line:79] root-日志信息：点击操作失败：添加工作经历('id', 're-workExpSave')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 75, in click_element
+    ele.click()
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 80, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webelement.py", line 633, in _execute
+    return self._parent.execute(command, params)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\Python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button class="btn re-save removefocus" id="re-workExpSave" onclick="probj.SaveWorkExp()">...</button> is not clickable at point (762, 622). Other element would receive the click: <div class="work-row" workid="55c0365baa0b401bbccc12a05a0c2650">...</div>
+  (Session info: chrome=87.0.4280.88)
+
+Mon, 21 Dec 2020 10:14:09-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/添加工作经历_20201221_101409.png
+Mon, 21 Dec 2020 10:15:54-INFO-person_center_page.py get_countname [line:16] root-日志信息：陈功华
+Mon, 21 Dec 2020 10:16:10-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：15185075826
+Mon, 21 Dec 2020 10:16:27-ERROR-base_page.py wait_eleVisible [line:37] root-日志信息：等待元素可见失败：,获取个人手机号,('xpath', '//span[@id="hname"]')
+Traceback (most recent call last):
+  File "D:\Python37\code\python9_WEB_Framework_V1\Common\base_page.py", line 29, in wait_eleVisible
+    EC.visibility_of_element_located(locator))
+  File "D:\Python37\lib\site-packages\selenium\webdriver\support\wait.py", line 80, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+Mon, 21 Dec 2020 10:16:27-INFO-base_page.py screenshot [line:107] root-日志信息：截图成功，图片路径为： D:\Python37\code\python9_WEB_Framework_V1\ScreenShot/获取个人手机号_20201221_101627.png
+Mon, 21 Dec 2020 10:16:53-INFO-ramdon_fun.py create_phone [line:25] root-日志信息：随机生成手机号：15616058605
